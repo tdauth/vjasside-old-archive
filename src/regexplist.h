@@ -22,7 +22,7 @@
 #define VJASSIDE_REGEXPLIST_H
 
 #include <QList>
-#include <QRegExp>
+#include <QRegularExpression>
 
 #include "syntaxschema.h"
 
@@ -55,7 +55,7 @@ class RegExpList
 		
 				Entry();
 				Entry(const QString &regularyExpression, const QString &expression = QString(), Behaviour behaviour = None, vjassdoc::Object *object = 0);
-				QRegExp regExp() const;
+                QRegularExpression regExp() const;
 				int length() const;
 				Behaviour behaviour() const;
 				vjassdoc::Object* object() const;
@@ -64,7 +64,7 @@ class RegExpList
 				void readFromSettings(QSettings &settings);
 		
 			private:
-				QRegExp m_regExp;
+                QRegularExpression m_regExp;
 				int m_length;
 				Behaviour m_behaviour;
 				vjassdoc::Object *m_object;
@@ -93,7 +93,7 @@ class RegExpList
 		int m_minimumRequiredSpace;
 };
 
-inline QRegExp RegExpList::Entry::regExp() const
+inline QRegularExpression RegExpList::Entry::regExp() const
 {
 	return m_regExp;
 }

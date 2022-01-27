@@ -14,7 +14,7 @@ INCLUDEPATH += . src src/stormlib
 
 QT       += core gui testlib
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 CONFIG += c++11
 CONFIG += no_testcase_installs
@@ -74,6 +74,7 @@ FORMS += ui/apidatabasedialog.ui \
 SOURCES += src/apidatabasedialog.cpp \
            src/editorsettingsdialog.cpp \
            src/jasshelperdialog.cpp \
+    src/main.cpp \
            src/main.cpp \
            src/mainwindow.cpp \
            src/mpqeditor.cpp \

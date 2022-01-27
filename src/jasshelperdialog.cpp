@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include <QtGui>
+#include <QtWidgets>
 
 #include "jasshelperdialog.h"
 #include "mainwindow.h"
@@ -435,7 +436,7 @@ void JasshelperDialog::run()
 	//process.setReadChannel(QProcess::StandardOutput);
 	
 #ifdef Q_OS_WIN32
-	process.start(jasshelperFilePath(), args);
+    process.start(m_jasshelperFilePath, args);
 #else
 	process.start("wine", args);
 	

@@ -52,7 +52,7 @@ class JasshelperDialog : public QDialog, public Ui::JasshelperDialog
 		void setOutputFileFilePath();
 		void selectJasshelper();
 		void selectConfigFile();
-                void selectJassCompiler();
+        void selectJassCompiler();
 		void selectWewarlock();
 		void run();
 		void restoreDefaults();

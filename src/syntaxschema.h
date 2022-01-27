@@ -90,8 +90,8 @@ class SyntaxSchema
 		void writeIntoSettings();
 		void readFromSettings();
 		
-		void exportIntoXmlFile(const QString &filePath) throw (SyntaxSchemaException);
-		void importFromXmlFile(const QString &filePath) throw (SyntaxSchemaException);
+        void exportIntoXmlFile(const QString &filePath);
+        void importFromXmlFile(const QString &filePath);
 	//public slots:
 		//void setFormat(Expression expression, QTextCharFormat *format);
 

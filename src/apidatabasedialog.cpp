@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include <QtGui>
+#include <QtWidgets>
 
 #include "apidatabasedialog.h"
 #include "mainwindow.h"
