@@ -1,0 +1,358 @@
+2009-04-10 Tamino Dauth <tamino@cdauth.de>
+* Added delete schema functionality.
+
+2009-04-04 Tamino Dauth <tamino@cdauth.de>
+* Revised pjass file dialog of class PjassDialog.
+* Improved open and close block functionality.
+
+2009-03-29 Tamino Dauth <tamino@cdauth.de>
+* Revised session handling and saving.
+* Converted some methods of class Session to inline methods.
+* Fixed wrong signal sending when text edit's content changes.
+
+2009-03-26 Tamino Dauth <tamino@cdauth.de>
+* Replaced import dir list view by a list widget.
+* Replaced all QFileDialog instances of the vjassdoc dialog by static function calls.
+* Revised API database handling of the API database dialog.
+* Added API database dialog save and cancel functionality.
+* Added oxygen icon to insert colour action.
+* Revised class JassHelperDialog and replaced list views and QFileDialog instances.
+* Revised parts of the editor settings dialog.
+
+2009-03-25 Tamino Dauth <tamino@cdauth.de>
+* Fixed random syntax highlighting bug.
+* Improved restore defaults functionality of editor settings dialog.
+* Replaced shortcut list view by a tree widget.
+* Replaced several QFileDialog instances by static function calls.
+* Replaced file list view by a list widget.
+* Icons will be shown in file list widget now.
+
+2009-03-22 Tamino Dauth <tamino@cdauth.de>
+* Revised main font handling.
+* Added class SyntaxSchemaException.
+* Methods exportIntoXmlFile() and importIntoXmlFile() of class SyntaxSchema will throw an exception now if there are any problems.
+* Improved importing of XML syntax schema files.
+* Improved format dialog functionality.
+* Improved line number functionality.
+* Improved regulary expression templates.
+
+2009-03-20 Tamino Dauth <tamino@cdauth.de>
+* Revised format dialog user interface.
+* Revised format handling.
+
+2009-03-18 Tamino Dauth <tamino@cdauth.de>
+* Added user interface and class FormatDialog.
+* There is only one font family and size selectable for the whole editor.
+* Syntax schemata formats can't have their own font family and size anymore.
+
+2009-03-14 Tamino Dauth <tamino@cdauth.de>
+* Replaced run buttons of dialogs by button groups.
+* Added restoreDefaults() methods to dialog classes.
+* Color won't be inserted anymore when user cancels the dialog.
+* Regulary expression lists of syntax schemata will be saved and loaded correctly now.
+* User is now able to add custom regulary expression templates.
+* Added regulary expression template for comments.
+* Improved syntax schema handling in editor settings dialog.
+
+2009-03-13 Tamino Dauth <tamino@cdauth.de>
+* Converted some methods to inline methods.
+* Added class and user interface PjassDialog.
+* Improved vjassdoc dialog and added new options.
+
+2009-03-01 Tamino Dauth <tamino@cdauth.de>
+* Fixed recent file action handling.
+* Improved syntax schema XML file handling.
+* vjassdoc executable file is selectable now.
+* Added general UNIX operating system support for external processes.
+
+2009-02-28 Tamino Dauth <tamino@cdauth.de>
+* Moved regulary expression lists to class SyntaxSchema.
+* Added methods for importing and exporting syntax schemata from and into XML files.
+* Added regulary expression widgets to editor settings dialog's user interface.
+
+2009-02-27 Tamino Dauth <tamino@cdauth.de>
+* Improved syntax highlighting.
+* JassHelper executable is now selectable by user.
+* Added several regulary expressions for Jass and vJass syntax highlighting.
+* Added class Entry to class RegExpList.
+* Fixed block detection functionality.
+
+2009-02-26 Tamino Dauth <tamino@cdauth.de>
+* Revised the whole syntax highlighting process.
+* Added first implementation of block detection.
+
+2009-02-25 Tamino Dauth <tamino@cdauth.de>
+* Added class RegExpList.
+
+2009-02-24 Tamino Dauth <tamino@cdauth.de>
+* Improved API database dialog.
+* Improved syntax highlighter.
+* Syntax scheme font family will be saved now.
+
+2009-02-23 Tamino Dauth <tamino@cdauth.de>
+* Added [wewarlock] section support to the JassHelper dialog.
+* Revised JassHelper configuration file handling.
+* JassHelper configuration file is selectable now.
+* Replaced KDE 3 icons by the new KDE 4 oxygen icons.
+
+2009-02-22 Tamino Dauth <tamino@cdauth.de>
+* Changed file filter for map selection.
+* Sessions will be saved now immediatly in settings when user saves them by using the menu action.
+
+2009-02-19 Tamino Dauth <tamino@cdauth.de>
+* Fixed namespace syntax errors.
+
+2009-02-18 Tamino Dauth <tamino@cdauth.de>
+* Removed file overwritting setting.
+* Program will now check if you save a file with the same path as another already opened one.
+
+2009-02-15 Tamino Dauth <tamino@cdauth.de>
+* New created files aren't shown as unsaved anymore.
+* When you change the current tab it will check now if undo, redo and copy actions are available.
+* Line numbers of text view's list widget will be now the number of text blocks in the opened text document.
+* Improved file handling.
+* Files won't have to be saved anymore when you run JassHelper.
+* You can add JassHelper look up folders and external tools correctly now.
+* You are able now to configure if file overwritting should be checked.
+
+2009-02-14 Tamino Dauth <tamino@cdauth.de>
+* File was changed slot will be connected first time when you change the current tab index.
+
+2009-02-09 Tamino Dauth <tamino@cdauth.de>
+* Revised API database dialog.
+* Added static addDatabase() and removeDatabase() methods to SyntaxHighlighter class.
+
+2009-02-08 Tamino Dauth <tamino@cdauth.de>
+* Enclosing by characters like "", '', () or [] has been implemented.
+* Added insert color action.
+* Added class TextView.
+* Improved text view user interface.
+* Fixed text edit's context menu functionality.
+* Added insert color entry to text edit's context menu.
+* Added default Jass, vJass and documentation comment expression lists to the syntax highlighter.
+* Improved syntax highlighter's expression search algorithm
+
+2009-02-06 Tamino Dauth <tamino@cdauth.de>
+* Implemented first parts of text edit's context menu extension functionality.
+
+2009-01-30 Tamino Dauth <tamino@cdauth.de>
+* Improved syntax highlighter functionality.
+* Removed the ExpressionDialog class.
+* Removed the expression dialog user interface.
+* There won't be any expressions in a syntax scheme anymore.
+* Removed API database list in the editor settings dialog.
+* Added the api database dialog user interface.
+* Added the ApiDatabaseDialog class.
+
+2009-01-29 Tamino Dauth <tamino@cdauth.de>
+* If you add an import path to the vjassdoc dialog which is already contained by it the comparison will stop immediatly after finding the same import path now.
+* Implemented first parts of the jasshelper.conf file editing functionality.
+
+2009-01-27 Tamino Dauth <tamino@cdauth.de>
+* If any script files do not exist there will be an error message now.
+
+2009-01-26 Tamino Dauth <tamino@cdauth.de>
+* Each single document will have its own syntax highlighter now.
+* When you change the current tab the file won't be marked as unsaved anymore.
+* When you save the editor settings the current tab 
+* The vjassdoc provides new check boxes for the three default code files of Jass
+
+2009-01-25 Tamino Dauth <tamino@cdauth.de>
+* Improved syntax highlighter.
+
+2009-01-24 Tamino Dauth <tamino@cdauth.de>
+* Revised the splash screen image.
+
+2009-01-23 Tamino Dauth <tamino@cdauth.de>
+* Revised add databases UI functionality.
+
+2009-01-20 Tamino Dauth <tamino@cdauth.de>
+* Replaced some normal iterations (C++ std lib style) by Qt's foreach keyword.
+* Revised some parts of the syntax highlighter.
+
+2009-01-19 Tamino Dauth <tamino@cdauth.de>
+* Added German and English translation files.
+* Unsaved new files won't be saved anymore.
+* Revised the VjassdocDialog class for the 0.2nd version of vjassdoc.
+
+2009-01-04 Tamino Dauth <tamino@cdauth.de>
+* Added a new user interface for a mpq editor settings dialog.
+* Revised the editor settings dialog buttons.
+* Added file path tooltips in the file list and the tab widget.
+
+2009-01-03 Tamino Dauth <tamino@cdauth.de>
+* Improved the MPQ editor.
+
+2009-01-02 Tamino Dauth <tamino@cdauth.de>
+* Revised the settings saving of the MainWindow class.
+* Improved the MPQ handling of the MPQ editor.
+
+2009-01-01 Tamino Dauth <tamino@cdauth.de>
+* Added the MpqEditor class.
+* The StormLib will be linked during the compilation now.
+
+2008-12-31 Tamino Dauth <tamino@cdauth.de>
+* Added the methods showFileSavedIcon(), setWindowTitleForFile(), createNewFile() and saveFileAsByIndex() to the MainWindow class.
+* Improved file handling.
+
+2008-12-30 Tamino Dauth <tamino@cdauth.de>
+* Added methods saveSessionByIndex() and showSessionMessageBox() to the MainWindow class.
+* Revised session and file handling.
+
+2008-12-24 Tamino Dauth <tamino@cdauth.de>
+* Added settings methods to the MainWindow class for the tab stop width, the show line numbers and the close files when creating a new session settings.
+* Added rejection functionality of those three settings for the editor settings dialog.
+
+2008-12-13 Tamino Dauth <tamino@cdauth.de>
+* Expression background color can be specified by the user now.
+* Expression background color will be saved now when quitting the application.
+* Improved syntax highlighter.
+
+2008-12-12 Tamino Dauth <tamino@cdauth.de>
+* Added an expression dialog UI.
+
+2008-12-11 Tamino Dauth <tamino@cdauth.de>
+* Implemented import directories functionality for the vjassdoc dialog.
+* Adapted the vjassdoc dialog to the newest compiled version of vjasdoc.
+* Replaced the old splash screen image by a new one.
+* Line breaks will be inserted correctly now when you open a file.
+* Fixed show errors option functionality of the JassHelper dialog.
+* The saveAllFiles() method of the MainWindow class won't ignore the first file anymore.
+
+2008-12-10 Tamino Dauth <tamino@cdauth.de>
+* Expression combo box index of the editor settings dialog will be saved correctly now.
+* Implemented export file as HTML functionality.
+* File dialog paths will be saved correctly now.
+* Added deselect functionality.
+
+2008-12-06 Tamino Dauth <tamino@cdauth.de>
+* Window title of the main window will be refreshed correctly now.
+* If you save or close all files and you cancel one dialog, program will stop showing dialogs for other files now.
+
+2008-11-12 Tamino Dauth <tamino@cdauth.de>
+* All files won't be saved before closing the application anymore.
+
+2008-11-11 Tamino Dauth <tamino@cdauth.de>
+* Replaced the print preview dialog by a print dialog.
+* Fixed print functionality.
+* Editor settings UI data will be writtend and read correctly now.
+* Added the fileIsAlreadyOpened(), the addRecentFileAction() and the renameRecentFileAction() to the MainWindow class.
+* Recent file actions have shortcuts now.
+* Recent file list will be writtend and read correctly now.
+* Opened files will be saved and opened again now when starting the application.
+
+2008-11-10 Tamino Dauth <tamino@cdauth.de>
+* Revised vjassdoc dialog UI.
+* The class TextEdit is used now.
+* Implemented a simple functionality for the show line numbers action.
+* Sessions will be saved and loaded correctly now.
+* Added the methods setSessionActionsEnabled(), addRecentSession(), openSessionByIndex() and closeOpenedSession() to the MainWindow class.
+
+2008-11-09 Tamino Dauth <tamino@cdauth.de>
+* Revised settings handling.
+* Added writeIntoSettings() and readFromSettings() to the SyntaxSchema class.
+* Syntax schemata will be saved and loaded correctly now.
+* You are able to rename syntax schamata now.
+* Revised writing and reading functionality of expressions.
+* Revised JassHelper dialog UI.
+* If the program has readed file paths for the JassHelperDialog and the files doesn't exist anymore the application shows a info message now.
+* vjasside supports and uses newest version of vjassdoc now.
+* Revised vjassdoc dialog UI.
+
+2008-10-18 Tamino Dauth <tamino@cdauth.de>
+* Added some shortcut handling widgets to the editor settings tab widget.
+* Added a part of the shortcut configuration functionality by iterating the actions and adding model index items to the column view.
+* Updated the action menu roles of the UI.
+
+2008-10-16 Tamino Dauth <tamino@cdauth.de>
+* When you change the current tab the right file list entry will be selected now.
+* When you save your opened session with 0 files, save file dialog won't appear now.
+* The file list view has the same context menu as the tab widget now.
+
+2008-10-15 Tamino Dauth <tamino@cdauth.de>
+* Files will be added to the file list widget now.
+
+2008-10-10 Tamino Dauth <tamino@cdauth.de>
+* Revised the MainWindow's read and write settings handlers.
+* Fixed some session handling bugs.
+* Added destructions of several members of the MainWindow class.
+
+2008-10-08 Tamino Dauth <tamino@cdauth.de>
+* Added read and write functionality to the VjassdocDialog and the MainWindow class.
+* Removed all writeSettings() and readSettings() methods.
+* Added cancel button to the close file message box.
+* Application won't be exited now if there is still any unsaved file.
+* Translation textes are formatted as UTF-8 now.
+
+2008-10-07 Tamino Dauth <tamino@cdauth.de>
+* Revised the writeSettings() and readSettings() methods of the JasshelperDialog class.
+
+2008-10-06 Tamino Dauth <tamino@cdauth.de>
+* Implemented short writeSettings() and readSettings() methods to the JasshelperDialog class.
+
+2008-10-05 Tamino Dauth <tamino@cdauth.de>
+* The undo, redo, cut, copy, copy as HTML and paste actions will be disabled now if they aren't able or allowed to use.
+* Added more icons from KDE 3.5.9.
+* Translated the English textes into German.
+* The first version will be German because it will be released on a German website (www.inwarcraft.de).
+* Changed widget's geometry.
+* Added the widget allCheckBox which allows the user to check or uncheck all API list categories.
+* Revised find slots and added the findExpression() method.
+* Revised session slots.
+* Revised UIs again.
+
+2008-10-04 Tamino Dauth <tamino@cdauth.de>
+* The tab widget, JassHelper dialog and vjassdoc dialog have scalable layouts now.
+
+2008-10-03 Tamino Dauth <tamino@cdauth.de>
+* Project was moved from Kate to KDevelop.
+* Added a file menu for opened tabs.
+
+2008-10-02 Tamino Dauth <tamino@cdauth.de>
+* Added syntax expressions group box to the editor settings dialog.
+* Added syntax expression configuration functionality to the EditorSettingsDialog class.
+* Revised the syntaxHighlighter() method of the MainWindow class.
+* Added Session class.
+* Added session slots to the MainWindow class.
+* Removed the general files group box of the JassHelper dialog UI.
+* Connected all slots of the JassHelper dialog.
+
+2008-10-01 Tamino Dauth <tamino@cdauth.de>
+* Added the JasshelperDialog class and UI 
+
+2008-09-30 Tamino Dauth <tamino@cdauth.de>
+* The output widget is now a QDockWidget.
+* Added the tool menu.
+* You aren't able to create a syntax schema with a blan name anymore.
+* When you create a new syntax schema combo box will change the current index now.
+* Revised some UI details.
+
+2008-09-29 Tamino Dauth <tamino@cdauth.de>
+* If no schema will be loaded the program creates one.
+* Added missing slot methods.
+* Removed the project menu and some view menu entries.
+* Moved the session menu entry to the main window's menu bar.
+* When starting an extern tool all files have to be saved now.
+* Expression color settings do work correctly now.
+* You can not delete all schemata anymore.
+* Revised the editor settings dialog UI.
+
+2008-09-27 Tamino Dauth <tamino@cdauth.de>
+* Revised SyntaxHighlighter, SyntaxSchema and MainWindow classes.
+* The syntax schemata will be shown in the editor settings dialog now.
+* The syntax schemata belong to the MainWindow class now.
+* Removed all thread classes (multi threading isn't implemented anymore).
+* Output text browser is used by the extern processes now.
+* The file closing bug was fixed.
+
+2008-09-14 Tamino Dauth <tamino@cdauth.de>
+* Some menus and actions will now be disabled if there is no opened file anymore.
+* Changed the API browser layout.
+
+2008-09-10 Tamino Dauth <tamino@cdauth.de>
+* Fixed some file handling bugs.
+
+2008-09-09 Tamino Dauth <tamino@cdauth.de>
+* Added many slot methods.
+* Added KDE action icons.
+* Added PjassThread and JasshelperThread class.

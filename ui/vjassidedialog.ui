@@ -1,0 +1,42 @@
+<ui version="4.0" >
+ <author>Tamino Dauth</author>
+ <class>VjassideDialog</class>
+ <widget class="QDialog" name="VjassideDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>516</width>
+    <height>113</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Über vjasside</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../vjasside.qrc" >:/images/vjasside.png</iconset>
+  </property>
+  <widget class="QLabel" name="label" >
+   <property name="geometry" >
+    <rect>
+     <x>160</x>
+     <y>10</y>
+     <width>344</width>
+     <height>86</height>
+    </rect>
+   </property>
+   <property name="text" >
+    <string>vjasside ist eine IDE (Integrated Development Environment
+– integrierte Entwicklungsumgebung) für die Skriptsprachen
+Jass und vJass.
+
+Sie wurde von Tamino Dauth entwickelt.</string>
+   </property>
+  </widget>
+ </widget>
+ <includes/>
+ <resources>
+  <include location="../vjasside.qrc" />
+ </resources>
+ <connections/>
+</ui>

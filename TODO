@@ -1,0 +1,97 @@
+Tamino Dauth <tamino.dauth@web.de>
+* FIXED: Error caused by syntax highlighter creation.
+* FIXED: Log output (Jass, vJass etc) should be shown in the output text browser, too.
+* FIXED: Actions should be disabled (file actions if no file is opened and edit actions if you can not edit it - undo, redo)
+* FIXED: When parsing Jass and you're canceling saving of the first file, process should be stopped.
+* FIXED: When all files should be saved (parse Jass syntax) and you are saving the first one, others won't be saved.
+* FIXED: Sometimes too many files are closed (when you close an unsaved file all other files on the right will be closed, too).
+* FIXED: Enable syntax highlighter.
+* FIXED: Fix file handling (open files and first file)
+* FIXED: Whenever the editor settings dialog is shown a new schema will be created.
+* Go to line or Goto line?
+* DockWidgets should have a fixed size (configure settings that the resize mouse is not displayed anymore).
+* FIXED: Create a JassHelper UI.
+* FIXED: Output text browser has to show normal output and error output.
+* DONE: Revise inherited protected and virtual methods.
+* FIXED: Scriptonly mode group box should be disabled.
+* FIXED: Remove all custom syntaxHighlighter != 0 checks. The get method already checks if it is 0.
+* FIXED: When you press the warcity check box of the JassHelper dialog, mode won't change correctly (group boxes).
+* FIXED: Remove the file selector of the vjassdoc dialog. All opened files should be parsed.
+* DONE: All settings should be saved when application closes.
+* FIXED: Correct the file menu's position.
+* FIXED: Missing icons for actions View -> Back, View -> Forward, File -> Reload.
+* Some menus should handle their actions like radio buttons (only one can be selected).
+* FIXED: The fileList widget should show all opened files.
+* FIXED (is not nessecary anymore): Missing KDE icon for the manage sessions action.
+* FIXED: Save all instances of the SyntaxSchema and Session class when exiting the application.
+* Menu actions have to menu which could be used for getting all contained actions listed.
+* Look at the article http://doc.trolltech.com/qq/qq26-adaptivecoloring.html of Qt. It shows you some interesting soloutions to solve the dynamic system colour changing problem.
+* FIXED (global font): Change the font dialog that you only can change the size and if it's bold, italic or underlined (You should create your own dialog with fore- and background colors and the whole font settings).
+* Program should search for end<expression> to create foldable blocks.
+* Application should be able to show line numbers.
+* DONE: User should be able to configure tab stop width.
+* Drag and drop for jass files should be enabled for the tab widget and the file list.
+* FIXED: There is still a bug when opening a session with more than 0 files.
+* DONE: Remove the settings group checks.
+* Replace most of lists by vectors (random access).
+* FIXED: Files dialog doesn't show the right directory.
+* FIXED: When a new file was created and the editor settings dialog was not shown before, the highlighter won't refresh the files highlighting.
+* FIXED: Syntax expressions background colour is black and can not be modified.
+* FIXED: When you cancel the syntax expression colour dialog, next time you will open it selected color won't be the same as before.
+* FIXED: When a file is opened by the program line breaks won't be shown correctly (it uses tabs instead of the default line breaks).
+* FIXED: Files only should be marked as unsaved when text changes and not when formating changes.
+* FIXED: Syntax highlighter highlights each file regardless it was changed before.
+* Improve the syntax highlighter to a hardcoded class which parses Jass and vJass code regardless any xml or user speficiations. Users only can specifiy some expressions which only will be highlighted in the right context.
+* FIXED: QStringListModel does not support any tooltips or icons (file list).
+* DONE: Use Qt's foreach keyword.
+* FIXED: In general the selected file is saved at runtime by the dialog instance itself. You shouldn't save it in the settings (just the directory). Check it out!
+* DONE: Each document needs its own syntax highlighter! Do not rehighlight that much.
+* DONE: JassHelper.conf file should be editable by the JassHelper dialog.
+* DONE: Das Kontextmenü im TextEdit entält eine Aktion namens Selected Text
+	-> Comment
+	-> Documentation comment
+	-> Preprocessor
+	-> String
+	-> Character
+	-> Brackets
+	-> Squared brackets
+	-> Nothing
+* DONE: Wenn Text eingerahmt ist und man ein Anführungszeichen oder eine Klammer einfügt, dann umschließt jenes Zeichen den markierten Text.
+* DONE: Im MPQ-Editor kann man auch w3x-, w3m- und w3n-Dateien öffnen.
+* Links im MPQ-Editor einen Dateibaum einbauen.
+* MPQ-Editor-Öffnen-Dialog:
+	-> Use internal list file from the MPQ
+	-> Use this external listfile together with internal listfile
+	-> Autodetect file extensions for files that are not in listfile
+	-> Open the MPQ in Read-only mode.
+* ProgressBar in MPQ-Editor verwenden.
+* Beim Erzeugen eines MPQ-Archivs Formate zur Auswahl stellen.
+* Die Möglichkeit einbauen, dass man ein MPQ-Archiv mit einem Verzeichnis erstellt (rekursive Durchsuchung).
+* Hash-Table-Size-SpinBox selbst implementieren.
+* Archiv-Version auswählbar machen.
+* (attributes)-Datei mit erzeugbar machen.
+* Tabulatorenzeichen lassen sicher per Editor-Einstellungen anzeigen.
+* DONE: Add insert color entry to the tools menu.
+* Maximale Undo-Ausführung?!
+* Ungehighlighteten Text als Text formatieren (Syntaxschema).
+* FIXED: New created file is unsaved.
+* DONE: Paths to extern executables should be choosable.
+* DONE: Section [wewarlock] of the JassHelper configuration file should be editable.
+* When a session is saved into settings all other vjasside processes should receive a signal and apply the new session's settings.
+* Fix regulary expressions in syntax highlighter for default Jass types (note that the beginning and end of line should be cutted - ^$).
+* Fix XML parsing.
+* DONE: Make pjass executable selectable.
+* FIXED When you copy text by pressing Ctrl + C file will be modified.
+* DONE: Keyword super should be highlighted.
+* DONE: If vjassdoc output director doesn't exist anymore, there should be displayed an error message.
+* DONE: Renamed jass option in vjassdoc dialog to jass only.
+* DONE: Support vjassdoc exclude option.
+* Replace QFileDialog instances by static functions.
+* Replace list views by list widgets.
+* FIXED: Fix random syntax highlighting.
+* Main window font won't be saved correctly.
+* File shouldn't be marked as unsaved when it's opened.
+
+Version 0.2
+* New settings category for ftp connections to servers which contain some code systems.
+* New doc widget which uses the StormLib for handling MPQ files.

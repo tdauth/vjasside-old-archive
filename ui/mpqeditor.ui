@@ -1,0 +1,184 @@
+<ui version="4.0" >
+ <author>Tamino Dauth</author>
+ <class>MpqEditor</class>
+ <widget class="QDialog" name="MpqEditor" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>572</width>
+    <height>344</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>MPQ-Editor</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../vjasside.qrc" >:/images/vjasside.png</iconset>
+  </property>
+  <layout class="QGridLayout" >
+   <item rowspan="2" row="0" column="0" >
+    <widget class="QTreeWidget" name="archiveTreeWidget" >
+     <property name="columnCount" >
+      <number>7</number>
+     </property>
+     <column>
+      <property name="text" >
+       <string>Pfad</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Name</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Sprache</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Größe</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Attribute</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Index</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Komprimierte Größe</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="0" column="1" >
+    <widget class="QGroupBox" name="mpqArchiveGroupBox" >
+     <property name="title" >
+      <string>MPQ-Archiv</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QPushButton" name="createNewArchivePushButton" >
+          <property name="text" >
+           <string>Anlegen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="openArchivePushButton" >
+          <property name="text" >
+           <string>Öffnen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="closeCurrentArchivePushButton" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="text" >
+           <string>Schließen</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item rowspan="2" row="1" column="1" >
+    <widget class="QGroupBox" name="fileGroupBox" >
+     <property name="enabled" >
+      <bool>false</bool>
+     </property>
+     <property name="title" >
+      <string>Datei</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QPushButton" name="addFilesPushButton" >
+          <property name="text" >
+           <string>Hinzufügen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="extractSelectedFilesPushButton" >
+          <property name="text" >
+           <string>Extrahieren</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="openSelectedFilesPushButton" >
+          <property name="text" >
+           <string>Öffnen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="deleteSelectedFilesPushButton" >
+          <property name="text" >
+           <string>Löschen</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QPushButton" name="settingsPushButton" >
+       <property name="text" >
+        <string>Einstellungen</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="closePushButton" >
+       <property name="text" >
+        <string>Schließen</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../vjasside.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>closePushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MpqEditor</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>197</x>
+     <y>338</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>482</x>
+     <y>315</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

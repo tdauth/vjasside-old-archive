@@ -1,0 +1,39 @@
+<RCC>
+    <qresource prefix="/" >
+        <file>images/actions/application-exit.png</file>
+        <file>images/actions/bookmarks-organize.png</file>
+        <file>images/actions/configure-shortcuts.png</file>
+        <file>images/actions/configure.png</file>
+        <file>images/actions/dialog-close.png</file>
+        <file>images/actions/document-edit.png</file>
+        <file>images/actions/document-export.png</file>
+        <file>images/actions/document-new.png</file>
+        <file>images/actions/document-open-recent.png</file>
+        <file>images/actions/document-open.png</file>
+        <file>images/actions/document-print.png</file>
+        <file>images/actions/document-revert.png</file>
+        <file>images/actions/document-save-all.png</file>
+        <file>images/actions/document-save-as.png</file>
+        <file>images/actions/document-save.png</file>
+        <file>images/actions/edit-copy.png</file>
+        <file>images/actions/edit-cut.png</file>
+        <file>images/actions/edit-find.png</file>
+        <file>images/actions/edit-paste.png</file>
+        <file>images/actions/edit-redo.png</file>
+        <file>images/actions/edit-select-all.png</file>
+        <file>images/actions/edit-undo.png</file>
+        <file>images/actions/fill-color.png</file>
+        <file>images/actions/go-bottom.png</file>
+        <file>images/actions/go-next.png</file>
+        <file>images/actions/go-previous.png</file>
+        <file>images/actions/help-about.png</file>
+        <file>images/actions/jasshelper.png</file>
+        <file>images/actions/list-add.png</file>
+        <file>images/actions/list-remove.png</file>
+        <file>images/actions/qt.png</file>
+        <file>images/actions/view-refresh.png</file>
+        <file>images/mimetypes/jasssource.png</file>
+        <file>images/splashscreen.png</file>
+        <file>images/vjasside.png</file>
+    </qresource>
+</RCC>

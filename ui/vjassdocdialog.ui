@@ -1,0 +1,700 @@
+<ui version="4.0" >
+ <author>Tamino Dauth</author>
+ <class>VjassdocDialog</class>
+ <widget class="QDialog" name="VjassdocDialog" >
+  <property name="windowModality" >
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>719</width>
+    <height>538</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>API-Dokumentation erstellen</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../vjasside.qrc" >:/images/vjasside.png</iconset>
+  </property>
+  <property name="modal" >
+   <bool>true</bool>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="0" column="0" >
+    <widget class="QGroupBox" name="titleGroupBox" >
+     <property name="title" >
+      <string>Ausgabe</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QLabel" name="titleLabel" >
+          <property name="text" >
+           <string>Titel</string>
+          </property>
+          <property name="alignment" >
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="titleLineEdit" >
+          <property name="text" >
+           <string>vJass-API</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="chooseDirPushButton" >
+          <property name="text" >
+           <string>Ausgabeverzeichnis wählen</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item rowspan="2" row="0" column="1" >
+    <widget class="QGroupBox" name="optionsGroupBox" >
+     <property name="title" >
+      <string>Optionen</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QPushButton" name="selectVjassdocPushButton" >
+          <property name="text" >
+           <string>vjassdoc auswählen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="jassCheckBox" >
+          <property name="text" >
+           <string>Nur Jass</string>
+          </property>
+          <property name="checked" >
+           <bool>false</bool>
+          </property>
+          <property name="tristate" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="debugCheckBox" >
+          <property name="text" >
+           <string>Debug-Modus</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="privateCheckBox" >
+          <property name="text" >
+           <string>Private Objekte erfassen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="textmacrosCheckBox" >
+          <property name="text" >
+           <string>Textmakro-Bereiche erfassen</string>
+          </property>
+          <property name="checked" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="htmlCheckBox" >
+          <property name="text" >
+           <string>HTML-Datei anlegen</string>
+          </property>
+          <property name="checked" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="pagesCheckBox" >
+          <property name="text" >
+           <string>HTML-Seiten anlegen</string>
+          </property>
+          <property name="checked" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="databaseCheckBox" >
+          <property name="text" >
+           <string>Datenbank anlegen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="verboseCheckBox" >
+          <property name="text" >
+           <string>Textreiche Ausgabe</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="timeCheckBox" >
+          <property name="text" >
+           <string>Zeit-Ausgabe</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="alphabeticalCheckBox" >
+          <property name="text" >
+           <string>Alphabetisch sortieren</string>
+          </property>
+          <property name="checked" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="useCommonjCheckBox" >
+          <property name="toolTip" >
+           <string>Die common.j-Datei enthält die Deklarationen aller nativen Grundfunktionen der Skriptsprache Jass.</string>
+          </property>
+          <property name="text" >
+           <string>common.j verwenden</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="useCommonaiCheckBox" >
+          <property name="toolTip" >
+           <string>Die common.ai-Datei enthält alle standardmäßigen Funktionen bezüglich der künstlichen Intelligenz in Warcraft 3.</string>
+          </property>
+          <property name="text" >
+           <string>common.ai verwenden</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="useBlizzardjCheckBox" >
+          <property name="text" >
+           <string>Blizzard.j verwenden</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item rowspan="2" row="0" column="2" >
+    <widget class="QGroupBox" name="objectGroupBox" >
+     <property name="title" >
+      <string>Objekte</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QCheckBox" name="commentCheckBox" >
+          <property name="text" >
+           <string>Kommentare</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="keywordCheckBox" >
+          <property name="text" >
+           <string>Schlüsselwörter</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="textMacroCheckBox" >
+          <property name="text" >
+           <string>Textmakros</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="textMacroInstanceCheckBox" >
+          <property name="text" >
+           <string>Textmakro-Instanzen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="typeCheckBox" >
+          <property name="text" >
+           <string>Typen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="globalCheckBox" >
+          <property name="text" >
+           <string>Globale</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="memberCheckBox" >
+          <property name="text" >
+           <string>Elemente</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="functionInterfaceCheckBox" >
+          <property name="text" >
+           <string>Funktionsschnittstellen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="functionCheckBox" >
+          <property name="text" >
+           <string>Funktionen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="methodCheckBox" >
+          <property name="text" >
+           <string>Methoden</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="interfaceCheckBox" >
+          <property name="text" >
+           <string>Schnittstellen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="structCheckBox" >
+          <property name="text" >
+           <string>Strukturen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="scopeCheckBox" >
+          <property name="text" >
+           <string>Bezugsrahmen</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="libraryCheckBox" >
+          <property name="text" >
+           <string>Bibliotheken</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="sourceFileCheckBox" >
+          <property name="text" >
+           <string>Quell-Dateien</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="docCommentCheckBox" >
+          <property name="text" >
+           <string>Dokumentationskommentare</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="allCheckBox" >
+          <property name="text" >
+           <string>Alle</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QGroupBox" name="importDirsGroupBox" >
+     <property name="title" >
+      <string>Import-Verzeichnisse</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <widget class="QListWidget" name="importDirListWidget" >
+        <property name="selectionMode" >
+         <enum>QAbstractItemView::MultiSelection</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <layout class="QHBoxLayout" >
+        <item>
+         <widget class="QPushButton" name="addImportDirPushButton" >
+          <property name="maximumSize" >
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>Hinzufügen</string>
+          </property>
+          <property name="icon" >
+           <iconset resource="../vjasside.qrc" >:/images/actions/list-add.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="removeImportDirsPushButton" >
+          <property name="maximumSize" >
+           <size>
+            <width>16777215</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>Entfernen</string>
+          </property>
+          <property name="icon" >
+           <iconset resource="../vjasside.qrc" >:/images/actions/list-remove.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3" >
+    <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="standardButtons" >
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::Ok|QDialogButtonBox::RestoreDefaults</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../vjasside.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>htmlCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>pagesCheckBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>477</x>
+     <y>229</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>477</x>
+     <y>261</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>VjassdocDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>592</x>
+     <y>518</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>543</x>
+     <y>538</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>VjassdocDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>503</x>
+     <y>518</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>489</x>
+     <y>472</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>docCommentCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>535</x>
+     <y>480</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>515</x>
+     <y>454</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>sourceFileCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>554</x>
+     <y>428</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>libraryCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>583</x>
+     <y>401</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>scopeCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>608</x>
+     <y>373</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>structCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>593</x>
+     <y>345</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>interfaceCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>616</x>
+     <y>316</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>methodCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>564</x>
+     <y>292</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>functionCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>533</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>functionInterfaceCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>605</x>
+     <y>242</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>memberCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>613</x>
+     <y>217</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>globalCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>541</x>
+     <y>190</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>typeCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>544</x>
+     <y>161</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textMacroInstanceCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>566</x>
+     <y>122</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textMacroCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>582</x>
+     <y>105</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>keywordCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>603</x>
+     <y>84</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>commentCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>603</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>615</x>
+     <y>55</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

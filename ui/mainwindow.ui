@@ -1,0 +1,1641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <author>Tamino Dauth</author>
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>833</width>
+    <height>755</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>vjasside</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../vjasside.qrc">
+    <normaloff>:/images/vjasside.png</normaloff>:/images/vjasside.png</iconset>
+  </property>
+  <property name="toolButtonStyle">
+   <enum>Qt::ToolButtonIconOnly</enum>
+  </property>
+  <property name="dockNestingEnabled">
+   <bool>true</bool>
+  </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QGridLayout">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="contextMenuPolicy">
+       <enum>Qt::ActionsContextMenu</enum>
+      </property>
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="tab">
+       <property name="contextMenuPolicy">
+        <enum>Qt::DefaultContextMenu</enum>
+       </property>
+       <attribute name="icon">
+        <iconset resource="../vjasside.qrc">
+         <normaloff>:/images/mimetypes/jasssource.png</normaloff>:/images/mimetypes/jasssource.png</iconset>
+       </attribute>
+       <attribute name="title">
+        <string>Neue Quell-Datei</string>
+       </attribute>
+       <layout class="QGridLayout">
+        <item row="0" column="0">
+         <widget class="QTextEdit" name="textEdit">
+          <property name="contextMenuPolicy">
+           <enum>Qt::DefaultContextMenu</enum>
+          </property>
+          <property name="lineWidth">
+           <number>1</number>
+          </property>
+          <property name="autoFormatting">
+           <set>QTextEdit::AutoNone</set>
+          </property>
+          <property name="lineWrapMode">
+           <enum>QTextEdit::WidgetWidth</enum>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>833</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="fileMenu">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>&amp;Datei</string>
+    </property>
+    <widget class="QMenu" name="openRecentMenu">
+     <property name="tearOffEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="title">
+      <string>Zu&amp;letzt geöffnete Dateien</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../vjasside.qrc">
+       <normaloff>:/images/actions/document-open-recent.png</normaloff>:/images/actions/document-open-recent.png</iconset>
+     </property>
+    </widget>
+    <addaction name="newAction"/>
+    <addaction name="openAction"/>
+    <addaction name="openRecentMenu"/>
+    <addaction name="separator"/>
+    <addaction name="saveAction"/>
+    <addaction name="saveAsAction"/>
+    <addaction name="saveAllAction"/>
+    <addaction name="separator"/>
+    <addaction name="reloadAction"/>
+    <addaction name="revertAllAction"/>
+    <addaction name="separator"/>
+    <addaction name="printAction"/>
+    <addaction name="separator"/>
+    <addaction name="exportAsHtmlAction"/>
+    <addaction name="closeAction"/>
+    <addaction name="closeAllAction"/>
+    <addaction name="closeAllOtherAction"/>
+    <addaction name="separator"/>
+    <addaction name="quitAction"/>
+   </widget>
+   <widget class="QMenu" name="editMenu">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>&amp;Bearbeiten</string>
+    </property>
+    <addaction name="undoAction"/>
+    <addaction name="redoAction"/>
+    <addaction name="separator"/>
+    <addaction name="cutAction"/>
+    <addaction name="copyAction"/>
+    <addaction name="copyAsHtmlAction"/>
+    <addaction name="pasteAction"/>
+    <addaction name="separator"/>
+    <addaction name="selectAllAction"/>
+    <addaction name="deselectAction"/>
+    <addaction name="blockSelectionModeAction"/>
+    <addaction name="separator"/>
+    <addaction name="overwriteModeAction"/>
+    <addaction name="separator"/>
+    <addaction name="findAction"/>
+    <addaction name="findNextAction"/>
+    <addaction name="findPreviousAction"/>
+    <addaction name="replaceAction"/>
+    <addaction name="separator"/>
+    <addaction name="goToLineAction"/>
+    <addaction name="findSelectReplaceAction"/>
+    <addaction name="findInFilesAction"/>
+   </widget>
+   <widget class="QMenu" name="viewMenu">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>&amp;Ansicht</string>
+    </property>
+    <widget class="QMenu" name="codeFoldingMenu">
+     <property name="tearOffEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="title">
+      <string>&amp;Code-Ausblendung</string>
+     </property>
+     <addaction name="collapseToplevelAction"/>
+     <addaction name="expandToplevelAction"/>
+     <addaction name="collapseOneLocalLevelAction"/>
+     <addaction name="expandOneLocalLevelAction"/>
+    </widget>
+    <widget class="QMenu" name="dynamicWordWrapIndicatorsMenu">
+     <property name="tearOffEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="title">
+      <string>Anzeigen für d&amp;ynamischen Zeilenumbruch</string>
+     </property>
+     <addaction name="offAction"/>
+     <addaction name="followLineNumbersAction"/>
+     <addaction name="alwaysOnAction"/>
+    </widget>
+    <addaction name="backAction"/>
+    <addaction name="forwardAction"/>
+    <addaction name="gotoLastEditPositionAction"/>
+    <addaction name="separator"/>
+    <addaction name="wordWrapAction"/>
+    <addaction name="dynamicWordWrapIndicatorsMenu"/>
+    <addaction name="showStaticWordWrapMarkerAction"/>
+    <addaction name="separator"/>
+    <addaction name="showIconBorderAction"/>
+    <addaction name="showLineNumbersAction"/>
+    <addaction name="showScrollbarMarksAction"/>
+    <addaction name="separator"/>
+    <addaction name="showFoldingMarkersAction"/>
+    <addaction name="codeFoldingMenu"/>
+   </widget>
+   <widget class="QMenu" name="sessionsMenu">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>&amp;Sitzungen</string>
+    </property>
+    <widget class="QMenu" name="openSessionMenu">
+     <property name="tearOffEnabled">
+      <bool>true</bool>
+     </property>
+     <property name="title">
+      <string>Ö&amp;ffnen …</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../vjasside.qrc">
+       <normaloff>:/images/actions/document-open.png</normaloff>:/images/actions/document-open.png</iconset>
+     </property>
+    </widget>
+    <addaction name="newSessionAction"/>
+    <addaction name="openSessionMenu"/>
+    <addaction name="separator"/>
+    <addaction name="saveSessionAction"/>
+    <addaction name="saveSessionAsAction"/>
+    <addaction name="separator"/>
+    <addaction name="deleteSessionAction"/>
+    <addaction name="separator"/>
+    <addaction name="closeSessionAction"/>
+   </widget>
+   <widget class="QMenu" name="buildMenu">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>&amp;Erstellen</string>
+    </property>
+    <addaction name="parseJassSyntaxAction"/>
+    <addaction name="parseVjassSyntaxAction"/>
+    <addaction name="separator"/>
+    <addaction name="buildApiDocumentationAction"/>
+   </widget>
+   <widget class="QMenu" name="settingsMenu">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>E&amp;instellungen</string>
+    </property>
+    <addaction name="configureEditorAction"/>
+   </widget>
+   <widget class="QMenu" name="helpMenu">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>&amp;Hilfe</string>
+    </property>
+    <addaction name="aboutPjassAction"/>
+    <addaction name="aboutJasshelperAction"/>
+    <addaction name="aboutVjassdocAction"/>
+    <addaction name="separator"/>
+    <addaction name="aboutVjasssdkAction"/>
+    <addaction name="aboutWc3sdkAction"/>
+    <addaction name="separator"/>
+    <addaction name="aboutVjassideAction"/>
+    <addaction name="aboutQtAction"/>
+   </widget>
+   <widget class="QMenu" name="toolsMenu">
+    <property name="tearOffEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="title">
+     <string>&amp;Werkzeuge</string>
+    </property>
+    <addaction name="fileListAction"/>
+    <addaction name="apiListAction"/>
+    <addaction name="outputAction"/>
+    <addaction name="showApiDatabaseDialogAction"/>
+    <addaction name="showMpqEditorAction"/>
+    <addaction name="insertColorAction"/>
+   </widget>
+   <widget class="QMenu" name="extensionsMenu">
+    <property name="title">
+     <string>E&amp;rweiterungen</string>
+    </property>
+    <widget class="QMenu" name="advancedScriptLibraryMenu">
+     <property name="title">
+      <string>Advanced Script Library</string>
+     </property>
+     <addaction name="createTalkAction"/>
+     <addaction name="createQuestAction"/>
+    </widget>
+    <addaction name="advancedScriptLibraryMenu"/>
+   </widget>
+   <addaction name="fileMenu"/>
+   <addaction name="editMenu"/>
+   <addaction name="viewMenu"/>
+   <addaction name="toolsMenu"/>
+   <addaction name="sessionsMenu"/>
+   <addaction name="buildMenu"/>
+   <addaction name="extensionsMenu"/>
+   <addaction name="settingsMenu"/>
+   <addaction name="helpMenu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QDockWidget" name="apiListDockWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>524287</width>
+     <height>524287</height>
+    </size>
+   </property>
+   <property name="baseSize">
+    <size>
+     <width>0</width>
+     <height>0</height>
+    </size>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::RightDockWidgetArea</set>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="apiListDockWidgetContents">
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <property name="baseSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <layout class="QGridLayout">
+     <item row="0" column="0">
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string>API-Liste</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item>
+          <layout class="QVBoxLayout">
+           <item>
+            <widget class="QCheckBox" name="commentCheckBox">
+             <property name="text">
+              <string>Kommentare</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="keywordCheckBox">
+             <property name="text">
+              <string>Schlüsselwörter</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="textMacroCheckBox">
+             <property name="text">
+              <string>Textmakros</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="textMacroInstanceCheckBox">
+             <property name="text">
+              <string>Textmakro-Instanzen</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="typeCheckBox">
+             <property name="text">
+              <string>Typen</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="globalCheckBox">
+             <property name="text">
+              <string>Globale</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="memberCheckBox">
+             <property name="text">
+              <string>Eigenschaften</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="functionInterfaceCheckBox">
+             <property name="text">
+              <string>Funktionsschnittstellen</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="functionCheckBox">
+             <property name="text">
+              <string>Funktionen</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="methodCheckBox">
+             <property name="text">
+              <string>Methoden</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="interfaceCheckBox">
+             <property name="text">
+              <string>Schnittstellen</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="structCheckBox">
+             <property name="text">
+              <string>Strukturen</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="scopeCheckBox">
+             <property name="text">
+              <string>Bezugsrahmen</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="libraryCheckBox">
+             <property name="text">
+              <string>Bibliotheken</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="sourceFileCheckBox">
+             <property name="text">
+              <string>Quell-Dateien</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="documentationCommentCheckBox">
+             <property name="text">
+              <string>Dokumentationskommentare</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="allCheckBox">
+             <property name="text">
+              <string>Alle</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QVBoxLayout">
+           <item>
+            <widget class="QLineEdit" name="lineEdit"/>
+           </item>
+           <item>
+            <widget class="QListWidget" name="listWidget"/>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="outputDockWidget">
+   <property name="minimumSize">
+    <size>
+     <width>142</width>
+     <height>147</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>524287</width>
+     <height>524287</height>
+    </size>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomDockWidgetArea</set>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="outputDockWidgetContents">
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <layout class="QGridLayout">
+     <item row="0" column="0">
+      <widget class="QTextBrowser" name="outputTextBrowser"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="fileListDockWidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>168</width>
+     <height>182</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>524287</width>
+     <height>524287</height>
+    </size>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea</set>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <property name="minimumSize">
+     <size>
+      <width>0</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>16777215</width>
+      <height>16777215</height>
+     </size>
+    </property>
+    <layout class="QGridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="fileListLabel">
+       <property name="text">
+        <string>Dateiliste</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QListWidget" name="fileListListWidget"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="newAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/document-new.png</normaloff>:/images/actions/document-new.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Neu</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="openAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/document-open.png</normaloff>:/images/actions/document-open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ö&amp;ffnen …</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="saveAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/document-save.png</normaloff>:/images/actions/document-save.png</iconset>
+   </property>
+   <property name="text">
+    <string>S&amp;peichern</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="saveAsAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/document-save-as.png</normaloff>:/images/actions/document-save-as.png</iconset>
+   </property>
+   <property name="text">
+    <string>Speichern &amp;unter …</string>
+   </property>
+  </action>
+  <action name="saveAllAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/document-save-all.png</normaloff>:/images/actions/document-save-all.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Alles speichern</string>
+   </property>
+  </action>
+  <action name="reloadAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/view-refresh.png</normaloff>:/images/actions/view-refresh.png</iconset>
+   </property>
+   <property name="text">
+    <string>E&amp;rneut laden</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="revertAllAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/document-revert.png</normaloff>:/images/actions/document-revert.png</iconset>
+   </property>
+   <property name="text">
+    <string>Alle Änderungen zurücknehmen</string>
+   </property>
+  </action>
+  <action name="printAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/document-print.png</normaloff>:/images/actions/document-print.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Drucken …</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="exportAsHtmlAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/document-export.png</normaloff>:/images/actions/document-export.png</iconset>
+   </property>
+   <property name="text">
+    <string>Als &amp;HTML exportieren …</string>
+   </property>
+  </action>
+  <action name="closeAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/dialog-close.png</normaloff>:/images/actions/dialog-close.png</iconset>
+   </property>
+   <property name="text">
+    <string>Schl&amp;ießen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
+  </action>
+  <action name="closeAllAction">
+   <property name="text">
+    <string>Alle &amp;schließen</string>
+   </property>
+  </action>
+  <action name="closeAllOtherAction">
+   <property name="text">
+    <string>Alle anderen schlie&amp;ßen</string>
+   </property>
+  </action>
+  <action name="quitAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/application-exit.png</normaloff>:/images/actions/application-exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Be&amp;enden</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::QuitRole</enum>
+   </property>
+  </action>
+  <action name="undoAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/edit-undo.png</normaloff>:/images/actions/edit-undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Rückgängig</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="redoAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/edit-redo.png</normaloff>:/images/actions/edit-redo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Wie&amp;derherstellen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Z</string>
+   </property>
+  </action>
+  <action name="cutAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/edit-cut.png</normaloff>:/images/actions/edit-cut.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Ausschneiden</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="copyAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/edit-copy.png</normaloff>:/images/actions/edit-copy.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Kopieren</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="copyAsHtmlAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/edit-copy.png</normaloff>:/images/actions/edit-copy.png</iconset>
+   </property>
+   <property name="text">
+    <string>Als &amp;HTML kopieren</string>
+   </property>
+  </action>
+  <action name="pasteAction">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/edit-paste.png</normaloff>:/images/actions/edit-paste.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Einfügen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="selectAllAction">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/edit-select-all.png</normaloff>:/images/actions/edit-select-all.png</iconset>
+   </property>
+   <property name="text">
+    <string>A&amp;lles auswählen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="deselectAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>A&amp;uswahl aufheben</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+A</string>
+   </property>
+  </action>
+  <action name="blockSelectionModeAction">
+   <property name="text">
+    <string>&amp;Blockauswahlmodus</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+B</string>
+   </property>
+  </action>
+  <action name="overwriteModeAction">
+   <property name="text">
+    <string>&amp;Überschreibmodus</string>
+   </property>
+   <property name="shortcut">
+    <string>Ins</string>
+   </property>
+  </action>
+  <action name="findAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/edit-find.png</normaloff>:/images/actions/edit-find.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Suchen …</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
+   </property>
+  </action>
+  <action name="findNextAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/go-next.png</normaloff>:/images/actions/go-next.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Weitersuchen</string>
+   </property>
+   <property name="shortcut">
+    <string>F3</string>
+   </property>
+  </action>
+  <action name="findPreviousAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/go-previous.png</normaloff>:/images/actions/go-previous.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Frühere suchen</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+F3</string>
+   </property>
+  </action>
+  <action name="replaceAction">
+   <property name="text">
+    <string>Ersetze&amp;n …</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="goToLineAction">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../../../../../../../:/images/actions/goto.png</normaloff>../../../../../../../../../:/images/actions/goto.png</iconset>
+   </property>
+   <property name="text">
+    <string>Gehe zu &amp;Zeile …</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="findInFilesAction">
+   <property name="text">
+    <string>Suche &amp;in Dateien …</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+F</string>
+   </property>
+  </action>
+  <action name="findSelectReplaceAction">
+   <property name="text">
+    <string>Su&amp;che-Auswahl-Ersetzen …</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+R</string>
+   </property>
+  </action>
+  <action name="expandTextAction">
+   <property name="text">
+    <string>Expand Text</string>
+   </property>
+  </action>
+  <action name="expandAbbreviationAction">
+   <property name="text">
+    <string>Expand Abbreviation</string>
+   </property>
+  </action>
+  <action name="backAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/go-previous.png</normaloff>:/images/actions/go-previous.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Zurück</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Left</string>
+   </property>
+  </action>
+  <action name="forwardAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/go-next.png</normaloff>:/images/actions/go-next.png</iconset>
+   </property>
+   <property name="text">
+    <string>V&amp;orwärts</string>
+   </property>
+   <property name="shortcut">
+    <string>Alt+Right</string>
+   </property>
+  </action>
+  <action name="gotoLastEditPositionAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/go-bottom.png</normaloff>:/images/actions/go-bottom.png</iconset>
+   </property>
+   <property name="text">
+    <string>Springe zur &amp;letzten Bearbeitungsposition</string>
+   </property>
+  </action>
+  <action name="raiseEditorAction">
+   <property name="text">
+    <string>Raise Editor</string>
+   </property>
+  </action>
+  <action name="nextErrorAction">
+   <property name="text">
+    <string>Next Error</string>
+   </property>
+  </action>
+  <action name="previousErrorAction">
+   <property name="text">
+    <string>Previous Error</string>
+   </property>
+  </action>
+  <action name="wordWrapAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Z&amp;eilenumbruch</string>
+   </property>
+  </action>
+  <action name="showStaticWordWrapMarkerAction">
+   <property name="text">
+    <string>Markierung für s&amp;tatischen Zeilenumbruch anzeigen</string>
+   </property>
+  </action>
+  <action name="showIconBorderAction">
+   <property name="text">
+    <string>Symbols&amp;palte anzeigen</string>
+   </property>
+   <property name="shortcut">
+    <string>F6</string>
+   </property>
+  </action>
+  <action name="showLineNumbersAction">
+   <property name="text">
+    <string>Ze&amp;ilennummern anzeigen</string>
+   </property>
+  </action>
+  <action name="showScrollbarMarksAction">
+   <property name="text">
+    <string>&amp;Markierung für Bildlaufleiste anzeigen</string>
+   </property>
+  </action>
+  <action name="showFoldingMarkersAction">
+   <property name="text">
+    <string>Markierungen &amp;für Code-Ausblendungen anzeigen</string>
+   </property>
+  </action>
+  <action name="newSessionAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/document-new.png</normaloff>:/images/actions/document-new.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Neu</string>
+   </property>
+  </action>
+  <action name="quickOpenerAction">
+   <property name="text">
+    <string>Quick opener</string>
+   </property>
+  </action>
+  <action name="saveSessionAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/document-save-as.png</normaloff>:/images/actions/document-save-as.png</iconset>
+   </property>
+   <property name="text">
+    <string>S&amp;peichern</string>
+   </property>
+  </action>
+  <action name="saveSessionAsAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/document-save.png</normaloff>:/images/actions/document-save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Speichern &amp;unter …</string>
+   </property>
+  </action>
+  <action name="parseJassSyntaxAction">
+   <property name="text">
+    <string>&amp;Jass Syntax überprüfen</string>
+   </property>
+   <property name="shortcut">
+    <string>F8</string>
+   </property>
+  </action>
+  <action name="parseVjassSyntaxAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/jasshelper.png</normaloff>:/images/actions/jasshelper.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;vJass Syntax überprüfen</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
+   </property>
+  </action>
+  <action name="buildApiDocumentationAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/bookmarks-organize.png</normaloff>:/images/actions/bookmarks-organize.png</iconset>
+   </property>
+   <property name="text">
+    <string>API-D&amp;okumentation erstellen</string>
+   </property>
+   <property name="shortcut">
+    <string>F10</string>
+   </property>
+  </action>
+  <action name="aboutVjassideAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/help-about.png</normaloff>:/images/actions/help-about.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ü&amp;ber vjasside</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutRole</enum>
+   </property>
+  </action>
+  <action name="aboutPjassAction">
+   <property name="text">
+    <string>Über &amp;PJass</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutQtRole</enum>
+   </property>
+  </action>
+  <action name="aboutJasshelperAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/jasshelper.png</normaloff>:/images/actions/jasshelper.png</iconset>
+   </property>
+   <property name="text">
+    <string>Über &amp;JassHelper</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutRole</enum>
+   </property>
+  </action>
+  <action name="aboutVjassdocAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/bookmarks-organize.png</normaloff>:/images/actions/bookmarks-organize.png</iconset>
+   </property>
+   <property name="text">
+    <string>Über vjass&amp;doc</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutRole</enum>
+   </property>
+  </action>
+  <action name="configureEditorAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/configure.png</normaloff>:/images/actions/configure.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Editor einrichten …</string>
+   </property>
+   <property name="shortcutContext">
+    <enum>Qt::WindowShortcut</enum>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::PreferencesRole</enum>
+   </property>
+  </action>
+  <action name="aboutVjasssdkAction">
+   <property name="text">
+    <string>Über vjass&amp;sdk</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutRole</enum>
+   </property>
+  </action>
+  <action name="aboutWc3sdkAction">
+   <property name="text">
+    <string>Über &amp;wc3sdk</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutRole</enum>
+   </property>
+  </action>
+  <action name="aboutQtAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/qt.png</normaloff>:/images/actions/qt.png</iconset>
+   </property>
+   <property name="text">
+    <string>Über &amp;Qt</string>
+   </property>
+   <property name="menuRole">
+    <enum>QAction::AboutQtRole</enum>
+   </property>
+  </action>
+  <action name="offAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Off</string>
+   </property>
+  </action>
+  <action name="followLineNumbersAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Follow Line Numbers</string>
+   </property>
+  </action>
+  <action name="alwaysOnAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Always On</string>
+   </property>
+  </action>
+  <action name="collapseToplevelAction">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Oberste Ebene einklappen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+-</string>
+   </property>
+  </action>
+  <action name="expandToplevelAction">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Oberste Ebene &amp;ausklappen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift++</string>
+   </property>
+  </action>
+  <action name="collapseOneLocalLevelAction">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Eine lokale Ebene einklappen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="expandOneLocalLevelAction">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Eine &amp;lokale Ebene ausklappen</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="closeSessionAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/dialog-close.png</normaloff>:/images/actions/dialog-close.png</iconset>
+   </property>
+   <property name="text">
+    <string>Schl&amp;ießen</string>
+   </property>
+  </action>
+  <action name="apiListAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>API-Liste</string>
+   </property>
+  </action>
+  <action name="outputAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Ausgabe</string>
+   </property>
+  </action>
+  <action name="fileListAction">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;Dateiliste</string>
+   </property>
+  </action>
+  <action name="showMpqEditorAction">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>MPQ-Editor</string>
+   </property>
+  </action>
+  <action name="showApiDatabaseDialogAction">
+   <property name="text">
+    <string>API-Datenbanken</string>
+   </property>
+  </action>
+  <action name="insertColorAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/fill-color.png</normaloff>:/images/actions/fill-color.png</iconset>
+   </property>
+   <property name="text">
+    <string>Farbe einfügen</string>
+   </property>
+  </action>
+  <action name="createTalkAction">
+   <property name="text">
+    <string>Gespräch erstellen</string>
+   </property>
+  </action>
+  <action name="createQuestAction">
+   <property name="text">
+    <string>Auftrag erstellen</string>
+   </property>
+  </action>
+  <action name="deleteSessionAction">
+   <property name="icon">
+    <iconset resource="../vjasside.qrc">
+     <normaloff>:/images/actions/dialog-close.png</normaloff>:/images/actions/dialog-close.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Löschen</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="../vjasside.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>apiListAction</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>apiListDockWidget</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>618</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>outputAction</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>outputDockWidget</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>530</x>
+     <y>555</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fileListAction</sender>
+   <signal>triggered(bool)</signal>
+   <receiver>fileListDockWidget</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>88</x>
+     <y>250</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>commentCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>594</x>
+     <y>97</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>keywordCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>594</x>
+     <y>124</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textMacroCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>594</x>
+     <y>151</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>typeCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>594</x>
+     <y>205</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>globalCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>594</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>memberCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>594</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>functionInterfaceCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>594</x>
+     <y>286</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>functionCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>590</x>
+     <y>313</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>methodCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>590</x>
+     <y>340</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>interfaceCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>590</x>
+     <y>367</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>structCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>590</x>
+     <y>394</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>scopeCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>590</x>
+     <y>421</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>libraryCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>590</x>
+     <y>448</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>sourceFileCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>590</x>
+     <y>475</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>documentationCommentCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>590</x>
+     <y>502</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>allCheckBox</sender>
+   <signal>clicked(bool)</signal>
+   <receiver>textMacroInstanceCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>528</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>594</x>
+     <y>178</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

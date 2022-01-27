@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <author>Tamino Dauth</author>
+ <class>JasshelperDialog</class>
+ <widget class="QDialog" name="JasshelperDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>544</width>
+    <height>555</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>vJass-Syntax überprüfen</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QGridLayout">
+   <item row="0" column="0">
+    <layout class="QHBoxLayout">
+     <item>
+      <widget class="QGroupBox" name="lookUpFoldersGroupBox">
+       <property name="title">
+        <string>Nachschlagordner</string>
+       </property>
+       <layout class="QGridLayout">
+        <item row="0" column="0">
+         <widget class="QListWidget" name="lookUpFolderListWidget"/>
+        </item>
+        <item row="1" column="0">
+         <layout class="QHBoxLayout">
+          <item>
+           <widget class="QPushButton" name="addLookUpFolderPushButton">
+            <property name="text">
+             <string>Hinzufügen</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../vjasside.qrc">
+              <normaloff>:/images/actions/list-add.png</normaloff>:/images/actions/list-add.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="removeLookUpFolderPushButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Entfernen</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../vjasside.qrc">
+              <normaloff>:/images/actions/list-remove.png</normaloff>:/images/actions/list-remove.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="externalToolsGroupBox">
+       <property name="title">
+        <string>Externe Werkzeuge</string>
+       </property>
+       <layout class="QGridLayout">
+        <item row="0" column="0">
+         <widget class="QListWidget" name="externalToolListWidget"/>
+        </item>
+        <item row="1" column="0">
+         <layout class="QHBoxLayout">
+          <item>
+           <widget class="QPushButton" name="addExternalToolPushButton">
+            <property name="text">
+             <string>Hinzufügen</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../vjasside.qrc">
+              <normaloff>:/images/actions/list-add.png</normaloff>:/images/actions/list-add.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="removeExternalToolPushButton">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Entfernen</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../vjasside.qrc">
+              <normaloff>:/images/actions/list-remove.png</normaloff>:/images/actions/list-remove.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout">
+     <item>
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QGroupBox" name="mapModeGroupBox">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="title">
+          <string>Kartenmodus</string>
+         </property>
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <layout class="QVBoxLayout">
+            <item>
+             <widget class="QPushButton" name="selectMapScriptPushButton">
+              <property name="text">
+               <string>Kartenskript auswählen</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="selectMapPushButton">
+              <property name="text">
+               <string>Karte auswählen</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QGroupBox" name="scriptonlyModeGroupBox">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="title">
+          <string>Skript-Modus</string>
+         </property>
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <layout class="QVBoxLayout">
+            <item>
+             <widget class="QPushButton" name="selectInputFilePushButton">
+              <property name="text">
+               <string>Eingabedatei auswählen</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="selectOutputFilePushButton">
+              <property name="text">
+               <string>Ausgabedatei auswählen</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QGroupBox" name="optionsGroupBox">
+         <property name="title">
+          <string>Optionen</string>
+         </property>
+         <layout class="QGridLayout">
+          <item row="0" column="0">
+           <layout class="QVBoxLayout">
+            <item>
+             <widget class="QPushButton" name="selectJasshelperPushButton">
+              <property name="text">
+               <string>JassHelper auswählen</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="selectConfigFilePushButton">
+              <property name="text">
+               <string>Konfigurationsdatei auswählen</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="selectJassCompilerPushButton">
+              <property name="text">
+               <string>Jass-Compiler auswählen</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="selectWewarlockPushButton">
+              <property name="text">
+               <string>WEWarlock auswählen</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="debugCheckBox">
+              <property name="text">
+               <string>Debug-Modus</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="nopreprocessorCheckBox">
+              <property name="text">
+               <string>Keine Präprozessoren</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="nooptimizeCheckBox">
+              <property name="text">
+               <string>Keine Optimierungen</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="scriptonlyCheckBox">
+              <property name="text">
+               <string>Nur Skripte</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="warcityCheckBox">
+              <property name="text">
+               <string>Warcity verwenden</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="showerrorsCheckBox">
+              <property name="text">
+               <string>Vorherige Fehler anzeigen</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+   <item row="2" column="0">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok|QDialogButtonBox::RestoreDefaults</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../vjasside.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>warcityCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>scriptonlyCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>527</x>
+     <y>481</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>527</x>
+     <y>454</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>warcityCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>scriptonlyCheckBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>527</x>
+     <y>481</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>527</x>
+     <y>454</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scriptonlyCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>scriptonlyModeGroupBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>527</x>
+     <y>454</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>106</x>
+     <y>518</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>scriptonlyCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>mapModeGroupBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>527</x>
+     <y>454</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>117</x>
+     <y>370</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>JasshelperDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>409</x>
+     <y>540</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>539</x>
+     <y>506</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>JasshelperDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>310</x>
+     <y>537</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>544</x>
+     <y>532</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

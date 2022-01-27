@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <author>Tamino Dauth</author>
+ <class>EditorSettingsDialog</class>
+ <widget class="QDialog" name="EditorSettingsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>645</width>
+    <height>366</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Editor-Einstellungen</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../vjasside.qrc">
+    <normaloff>:/images/vjasside.png</normaloff>:/images/vjasside.png</iconset>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>false</bool>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>9</y>
+     <width>627</width>
+     <height>310</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="editor">
+    <attribute name="title">
+     <string>Editor</string>
+    </attribute>
+    <layout class="QGridLayout">
+     <item row="0" column="0">
+      <layout class="QVBoxLayout">
+       <item>
+        <widget class="QCheckBox" name="showLineNumbersCheckBox">
+         <property name="text">
+          <string>Zeige Zeilennummern</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="automaticIndentionCheckBox">
+         <property name="text">
+          <string>Automatisches Einrücken</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout">
+         <item>
+          <widget class="QLabel" name="tabStopWidthLabel">
+           <property name="text">
+            <string>Tabulatorenbreite:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="tabStopWidthSpinBox"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="closeFilesWhenCreatingANewSessionCheckBox">
+         <property name="text">
+          <string>Schließe alle Dateien, wenn neue Sitzung erstellt wird</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="selectFontPushButton">
+         <property name="text">
+          <string>Schriftart wählen</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="scriptingLanguage">
+    <attribute name="title">
+     <string>Skriptsprache</string>
+    </attribute>
+    <layout class="QGridLayout">
+     <item row="0" column="0">
+      <widget class="QGroupBox" name="syntaxSchemataGroupBox">
+       <property name="title">
+        <string>Syntax-Schemas</string>
+       </property>
+       <layout class="QGridLayout">
+        <item row="0" column="0" colspan="2">
+         <layout class="QVBoxLayout">
+          <item>
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QLabel" name="schemaLabel">
+              <property name="text">
+               <string>Schema:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="schemaComboBox"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="newSchemaPushButton">
+              <property name="text">
+               <string>Neu</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="deleteSchemaPushButton">
+              <property name="text">
+               <string>Löschen</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="renameSchemaPushButton">
+              <property name="text">
+               <string>Umbenennen</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="importSchemaPushButton">
+              <property name="text">
+               <string>Importieren</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="exportSchemaPushButton">
+              <property name="text">
+               <string>Exportieren</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout">
+            <item>
+             <widget class="QLabel" name="formatLabel">
+              <property name="text">
+               <string>Format:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="formatComboBox">
+              <item>
+               <property name="text">
+                <string>Text</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Ganzzahl</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Fließkommazahl</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Schriftzeichen</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Zeichenkette</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Kommentar</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Operator</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Schlüsselwort</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>vJass-Schlüsselwort</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Präprozessor</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Präprozessor-Schlüsselwort</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Präprozessor-Argument</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dokumentationskommentar</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dokumentationskommentar-Schlüsselwort</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Dokumentationskommentar-Ausdruck</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="formatPushButton">
+              <property name="text">
+               <string>Format</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0">
+         <widget class="QGroupBox" name="templateGroupBox">
+          <property name="title">
+           <string>Vorlagen</string>
+          </property>
+          <layout class="QGridLayout">
+           <item row="0" column="0" colspan="3">
+            <widget class="QListWidget" name="templateListWidget">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="modelColumn">
+              <number>0</number>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="addTemplatePushButton">
+             <property name="text">
+              <string>Hinzufügen</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../vjasside.qrc">
+               <normaloff>:/images/actions/list-add.png</normaloff>:/images/actions/list-add.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QPushButton" name="removeTemplatesPushButton">
+             <property name="text">
+              <string>Entfernen</string>
+             </property>
+             <property name="icon">
+              <iconset resource="../vjasside.qrc">
+               <normaloff>:/images/actions/list-remove.png</normaloff>:/images/actions/list-remove.png</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QPushButton" name="editTemplatePushButton">
+             <property name="text">
+              <string>Bearbeiten</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QGroupBox" name="listGroupBox">
+          <property name="title">
+           <string>Listen</string>
+          </property>
+          <layout class="QGridLayout">
+           <item row="0" column="0">
+            <widget class="QListWidget" name="listListWidget"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QPushButton" name="editListPushButton">
+             <property name="text">
+              <string>Bearbeiten</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="shortcuts">
+    <attribute name="title">
+     <string>Tastenkürzel</string>
+    </attribute>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>9</x>
+       <y>206</y>
+       <width>605</width>
+       <height>68</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Tastenkombination</string>
+     </property>
+     <layout class="QGridLayout">
+      <item row="0" column="0">
+       <layout class="QHBoxLayout">
+        <item>
+         <widget class="QRadioButton" name="noneRadioButton">
+          <property name="text">
+           <string>Kein</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="standardRadioButton">
+          <property name="text">
+           <string>Standard</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="userDefinedRadioButtom">
+          <property name="text">
+           <string>Benutzerdefiniert</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="shortcutPushButton">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QTreeWidget" name="shortcutTreeWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>601</width>
+       <height>192</height>
+      </rect>
+     </property>
+     <column>
+      <property name="text">
+       <string>Aktion</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Tastenkürzel</string>
+      </property>
+     </column>
+     <column>
+      <property name="text">
+       <string>Alternative</string>
+      </property>
+     </column>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QDialogButtonBox" name="dialogButtonBox">
+   <property name="geometry">
+    <rect>
+     <x>9</x>
+     <y>325</y>
+     <width>627</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::RestoreDefaults|QDialogButtonBox::Save</set>
+   </property>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>schemaComboBox</tabstop>
+  <tabstop>newSchemaPushButton</tabstop>
+  <tabstop>deleteSchemaPushButton</tabstop>
+  <tabstop>dialogButtonBox</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../vjasside.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>dialogButtonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>EditorSettingsDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>615</x>
+     <y>341</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>643</x>
+     <y>316</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dialogButtonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>EditorSettingsDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>574</x>
+     <y>337</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>576</x>
+     <y>361</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

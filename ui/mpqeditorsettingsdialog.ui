@@ -1,0 +1,42 @@
+<ui version="4.0" >
+ <class>MpqEditorSettingsDialog</class>
+ <widget class="QDialog" name="MpqEditorSettingsDialog" >
+  <property name="windowModality" >
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Einstellungen</string>
+  </property>
+  <property name="windowIcon" >
+   <iconset resource="../vjasside.qrc" >:/images/vjasside.png</iconset>
+  </property>
+  <property name="modal" >
+   <bool>true</bool>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox" >
+   <property name="geometry" >
+    <rect>
+     <x>20</x>
+     <y>260</y>
+     <width>349</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <property name="standardButtons" >
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::RestoreDefaults|QDialogButtonBox::Save</set>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="../vjasside.qrc" />
+ </resources>
+ <connections/>
+</ui>

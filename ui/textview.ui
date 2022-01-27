@@ -1,0 +1,61 @@
+<ui version="4.0" >
+ <author>Tamino Dauth</author>
+ <class>TextView</class>
+ <widget class="QWidget" name="TextView" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>522</width>
+    <height>342</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="0" column="0" >
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QListWidget" name="listWidget" >
+       <property name="maximumSize" >
+        <size>
+         <width>80</width>
+         <height>16777215</height>
+        </size>
+       </property>
+       <property name="verticalScrollBarPolicy" >
+        <enum>Qt::ScrollBarAsNeeded</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="vjasside::TextEdit" name="textEdit" >
+       <property name="lineWrapMode" >
+        <enum>QTextEdit::FixedPixelWidth</enum>
+       </property>
+       <property name="lineWrapColumnOrWidth" >
+        <number>65535</number>
+       </property>
+       <property name="acceptRichText" >
+        <bool>false</bool>
+       </property>
+       <property name="textInteractionFlags" >
+        <set>Qt::TextEditorInteraction</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>vjasside::TextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>src/textedit.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

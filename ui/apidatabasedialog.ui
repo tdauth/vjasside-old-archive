@@ -1,0 +1,156 @@
+<ui version="4.0" >
+ <author>Tamino Dauth</author>
+ <class>ApiDatabaseDialog</class>
+ <widget class="QDialog" name="ApiDatabaseDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>409</width>
+    <height>311</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>API-Datenbanken</string>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="0" column="0" >
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="title" >
+      <string>API-Datenbanken</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QListWidget" name="listWidget" >
+          <property name="selectionMode" >
+           <enum>QAbstractItemView::MultiSelection</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" >
+          <item>
+           <widget class="QPushButton" name="addDatabasesPushButton" >
+            <property name="text" >
+             <string>Hinzufügen</string>
+            </property>
+            <property name="icon" >
+             <iconset resource="../vjasside.qrc" >:/images/actions/list-add.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="removeDatabasesPushButton" >
+            <property name="enabled" >
+             <bool>false</bool>
+            </property>
+            <property name="text" >
+             <string>Entfernen</string>
+            </property>
+            <property name="icon" >
+             <iconset resource="../vjasside.qrc" >:/images/actions/list-remove.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="1" >
+    <widget class="QGroupBox" name="objectActionsGroupBox" >
+     <property name="enabled" >
+      <bool>false</bool>
+     </property>
+     <property name="title" >
+      <string>Objekt-Aktionen</string>
+     </property>
+     <layout class="QGridLayout" >
+      <item row="0" column="0" >
+       <layout class="QVBoxLayout" >
+        <item>
+         <widget class="QPushButton" name="addObjectPushButton" >
+          <property name="text" >
+           <string>Hinzufügen</string>
+          </property>
+          <property name="icon" >
+           <iconset resource="../vjasside.qrc" >:/images/actions/list-add.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="removeObjectPushButton" >
+          <property name="text" >
+           <string>Entfernen</string>
+          </property>
+          <property name="icon" >
+           <iconset resource="../vjasside.qrc" >:/images/actions/list-remove.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="editObjectPushButton" >
+          <property name="text" >
+           <string>Bearbeiten</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2" >
+    <widget class="QDialogButtonBox" name="buttonBox" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons" >
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::NoButton|QDialogButtonBox::RestoreDefaults|QDialogButtonBox::Save</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../vjasside.qrc" />
+ </resources>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>ApiDatabaseDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>348</x>
+     <y>282</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>405</x>
+     <y>268</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>ApiDatabaseDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>254</x>
+     <y>286</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>404</x>
+     <y>206</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
