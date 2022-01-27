@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include <QtGui>
+#include <QtWidgets>
 
 #include "formatdialog.h"
 #include "mainwindow.h"

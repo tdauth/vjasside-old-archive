@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include <QtGui>
+#include <QtWidgets>
 
 #include "mpqeditor.h"
 #include "mainwindow.h"
@@ -162,10 +163,8 @@ void MpqEditor::createNewArchive()
 			
 		qDebug() << "File path " << filePath;
 		
-		qDebug() << "ASCII file path " << filePath.toAscii();
-		
 		bool ok;
-		hashTableSize = QInputDialog::getInteger(this, tr("Streuwerttabellengröße"), tr("Größe:"), hashTableSize, 16, 262144, 1, &ok);
+        hashTableSize = QInputDialog::getInt(this, tr("Streuwerttabellengröße"), tr("Größe:"), hashTableSize, 16, 262144, 1, &ok);
 		
 		if (!ok)
 			return;
@@ -179,7 +178,7 @@ void MpqEditor::createNewArchive()
 			oldArchive = archive;
 
 		HANDLE file = INVALID_HANDLE_VALUE;
-		file = CreateFile(filePath.toAscii(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
+        file = CreateFile(filePath.toUtf8().data(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
 		
 		if (file == INVALID_HANDLE_VALUE)
 		{
@@ -190,11 +189,11 @@ void MpqEditor::createNewArchive()
 			}
 		}
 		
-		if (!SFileCreateArchiveEx(filePath.toAscii(), MPQ_CREATE_ARCHIVE_V2 | OPEN_ALWAYS, hashTableSize, &archive))
+        if (!SFileCreateArchiveEx(filePath.toUtf8().data(), MPQ_CREATE_ARCHIVE_V2 | OPEN_ALWAYS, hashTableSize, &archive))
 		{
 			if (GetLastError() != ERROR_SUCCESS)
 			{
-				DeleteFile(filePath.toAscii());
+                DeleteFile(filePath.toUtf8().data());
 			
 				if (archive != NULL && archive != oldArchive)
 					SFileCloseArchive(archive);
@@ -242,14 +241,14 @@ void MpqEditor::openArchive()
 		//if (filePath.isEmpty())
 			//return;
 
-		qDebug() << "ASCII file path " << filePath.toAscii();
+        qDebug() << "ASCII file path " << filePath;
 
 		HANDLE oldArchive = NULL;
 		
 		if (archiveWasOpened)
 			oldArchive = archive;
 
-		if (!SFileCreateArchiveEx(filePath.toAscii(), OPEN_EXISTING, 0, &archive))
+        if (!SFileCreateArchiveEx(filePath.toUtf8().data(), OPEN_EXISTING, 0, &archive))
 		{
 			if (GetLastError() != ERROR_SUCCESS)
 			{
@@ -323,7 +322,7 @@ void MpqEditor::addFiles()
 			
 			qDebug() << "Add file with path " << iterator << " and name " << addFileName;
 			
-			if (!SFileAddFile(archive, iterator.toAscii(), addFileName.toAscii(), MPQ_FILE_ENCRYPTED)) /// @todo If the file does already exist, ask for replacement.
+            if (!SFileAddFile(archive, iterator.toUtf8().data(), addFileName.toUtf8().data(), MPQ_FILE_ENCRYPTED)) /// @todo If the file does already exist, ask for replacement.
 			{
 				showErrorMessage(QString(tr("Datei \"%1\" konnte nicht hinzugefügt werden.")).arg(iterator));
 				//break?
@@ -361,7 +360,7 @@ void MpqEditor::extractSelectedFiles()
 		{
 			fileDirectory = extractSelectedFilesFileDialog->directory();
 			
-			if (!SFileExtractFile(archive, item->text(0).toAscii(), item->text(0).toAscii()))
+            if (!SFileExtractFile(archive, item->text(0).toUtf8().data(), item->text(0).toUtf8().data()))
 				showErrorMessage(QString(tr("Datei \"%1\" konnte nicht extrahiert werden.")).arg(item->text(0)));
 		}
 		else
@@ -381,7 +380,7 @@ void MpqEditor::deleteSelectedFiles()
 
 	foreach (item, archiveTreeWidget->selectedItems())
 	{
-		if (!SFileRemoveFile(archive, item->text(0).toAscii()))
+        if (!SFileRemoveFile(archive, item->text(0).toUtf8().data()))
 			showErrorMessage(QString(tr("Datei \"%1\" konnte nicht gelöscht werden.")).arg(item->text(0)));
 	}
 
@@ -430,7 +429,7 @@ void MpqEditor::refreshTreeWidget(bool showEmptyMessage)
 	
 	foreach (iterator, listFiles)
 	{
-		file = SFileFindFirstFile(archive, "*", &findData, iterator.toAscii());
+        file = SFileFindFirstFile(archive, "*", &findData, iterator.toUtf8().data());
 		
 		qDebug() << "Checking list file " << iterator;
 		

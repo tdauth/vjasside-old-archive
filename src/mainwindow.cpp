@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include <QtGui>
+#include <QtWidgets>
 
 #include "mainwindow.h"
 #include "textview.h"
@@ -470,8 +471,10 @@ void MainWindow::setTabStopWidth(int tabStopWidth)
 	
 	m_tabStopWidth = tabStopWidth;
 	
-	for (int i = tabWidget->count() - 1; i >= 0; --i)
-		static_cast<TextView*>(tabWidget->widget(i))->textEdit->setTabStopWidth(tabStopWidth);
+    for (int i = tabWidget->count() - 1; i >= 0; --i) {
+        //static_cast<TextView*>(tabWidget->widget(i))->textEdit->setTabStopWidth(tabStopWidth);
+        static_cast<TextView*>(tabWidget->widget(i))->textEdit->setTabStopDistance(tabStopWidth);
+    }
 }
 
 int MainWindow::tabStopWidth() const
@@ -807,7 +810,7 @@ void MainWindow::goToLine()
 {
 	TextEdit *textEdit = static_cast<TextView*>(tabWidget->widget(tabWidget->currentIndex()))->textEdit;
 	bool ok;
-	line = QInputDialog::getInteger(this, tr("Gehe zu Zeile"), tr("Gehe zu Zeile:"), line, 0, textEdit->document()->blockCount(), 1, &ok);
+    line = QInputDialog::getInt(this, tr("Gehe zu Zeile"), tr("Gehe zu Zeile:"), line, 0, textEdit->document()->blockCount(), 1, &ok);
 
 	if (ok)
 	{
@@ -1487,7 +1490,6 @@ void MainWindow::openFileByPath(const QString &filePath)
 	int index = tabWidget->count() - 1;
 	filePaths.replace(index, filePath);
 	class TextView *textView = static_cast<class TextView*>(tabWidget->widget(index));
-	textView->openFile(filePath);
 	setFileTextDataByIndex(index);
 }
 

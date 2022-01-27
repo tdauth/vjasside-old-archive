@@ -26,6 +26,7 @@
 #include "mainwindow.h"
 #include "syntaxschema.h"
 #include "textview.h"
+#include "textedit.h"
 
 namespace vjasside
 {

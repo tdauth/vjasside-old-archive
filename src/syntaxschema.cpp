@@ -650,7 +650,7 @@ QString SyntaxSchema::getNameByXmlFile(const QString &filePath)
 	
 	streamReader.readNext();
 	
-	if (!streamReader.isStartElement() || streamReader.qualifiedName() != "name")
+    if (!streamReader.isStartElement() || streamReader.qualifiedName() != QString("name"))
 		return QString();
 	
 	return streamReader.text().toString();
@@ -816,7 +816,7 @@ void SyntaxSchema::readFromSettings()
 	settings.endGroup();
 }
 
-void SyntaxSchema::exportIntoXmlFile(const QString &filePath) throw (SyntaxSchemaException)
+void SyntaxSchema::exportIntoXmlFile(const QString &filePath)
 {
 	QFile file(filePath);
 	file.open(QIODevice::WriteOnly | QIODevice::Text);
@@ -883,7 +883,7 @@ void SyntaxSchema::exportIntoXmlFile(const QString &filePath) throw (SyntaxSchem
 	streamWriter.writeEndDocument();
 }
 
-void SyntaxSchema::importFromXmlFile(const QString &filePath) throw (SyntaxSchemaException)
+void SyntaxSchema::importFromXmlFile(const QString &filePath)
 {
 	QFile file(filePath);
 	
@@ -899,7 +899,7 @@ void SyntaxSchema::importFromXmlFile(const QString &filePath) throw (SyntaxSchem
 	
 	streamReader.readNext();
 	
-	if (!streamReader.isStartElement() || streamReader.qualifiedName() != "name")
+    if (!streamReader.isStartElement() || streamReader.qualifiedName() != QString("name"))
 		throw SyntaxSchemaException(QObject::tr("Fehler beim Lesen der Datei \"%1\".<br>Element \"name\" fehlt.").arg(filePath));
 	
 	m_name = streamReader.text().toString();
@@ -913,7 +913,7 @@ void SyntaxSchema::importFromXmlFile(const QString &filePath) throw (SyntaxSchem
 	
 		streamReader.readNext();
 		
-		if (streamReader.qualifiedName() != "font")
+        if (streamReader.qualifiedName() != QString("font"))
 			throw SyntaxSchemaException(QObject::tr("Fehler beim Lesen der Datei \"%1\".<br>Element \"font\" fehlt.").arg(filePath));
 
 		this->setFormatBold(SyntaxSchema::Format(i), streamReader.readElementText().toInt());
@@ -924,7 +924,7 @@ void SyntaxSchema::importFromXmlFile(const QString &filePath) throw (SyntaxSchem
 		streamReader.readNext();
 		streamReader.readNext();
 		
-		if (streamReader.qualifiedName() != "foreground")
+        if (streamReader.qualifiedName() != QString("foreground"))
 			throw SyntaxSchemaException(QObject::tr("Fehler beim Lesen der Datei \"%1\".<br>Element \"foreground\" fehlt.").arg(filePath));
 		
 		QColor foreground;
@@ -936,7 +936,7 @@ void SyntaxSchema::importFromXmlFile(const QString &filePath) throw (SyntaxSchem
 		
 		streamReader.readNext();
 		
-		if (streamReader.qualifiedName() != "background")
+        if (streamReader.qualifiedName() != QString("background"))
 			throw SyntaxSchemaException(QObject::tr("Fehler beim Lesen der Datei \"%1\".<br>Element \"background\" fehlt.").arg(filePath));
 		
 		QColor background;

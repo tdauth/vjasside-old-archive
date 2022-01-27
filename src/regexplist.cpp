@@ -19,6 +19,7 @@
  ***************************************************************************/
 
 #include <QtCore>
+#include <QRegularExpression>
 
 #include "regexplist.h"
 #include "vjassdoc/object.h"
@@ -36,12 +37,12 @@ RegExpList::Entry::Entry(const QString &regularyExpression, const QString &expre
 {
 	if (expression.isEmpty())
 	{
-		m_regExp = QRegExp(regularyExpression);
+        m_regExp = QRegularExpression(regularyExpression);
 		m_length = 1;
 	}
 	else
 	{
-		m_regExp = QRegExp(regularyExpression.arg(expression));
+        m_regExp = QRegularExpression(regularyExpression.arg(expression));
 		m_length = expression.length(); // TODO Isn't correct everytime (\*)
 	}
 
@@ -112,15 +113,14 @@ void RegExpList::find(const QString &text, int start, int &freeSpace, SyntaxHigh
 			continue;
 	
 		int localStart = 0;
-		QRegExp regExp = iterator.regExp();
-		
-		for (int position = regExp.indexIn(text, start); position != -1; position = regExp.indexIn(text, start + localStart))
+        QRegularExpression regExp = iterator.regExp();
+
+        for (QRegularExpressionMatch position = regExp.match(text, start); position.hasMatch(); position = regExp.match(text, start + localStart))
 		{
-			QString capturedText = regExp.capturedTexts()[0];
-			position += text.mid(position).indexOf(capturedText);
-			localStart = position + capturedText.length();
+            QString capturedText = position.captured();
+            localStart = position.capturedStart() + capturedText.length();
 			freeSpace -= capturedText.length();
-			syntaxHighlighter->setFormat(position, capturedText.length(), format());
+            syntaxHighlighter->setFormat(position.capturedStart(), capturedText.length(), format());
 			syntaxHighlighter->setLineProperties(iterator.behaviour() == Entry::OpenBlock, iterator.behaviour() == Entry::CloseBlock);
 			
 			if (iterator.behaviour() == Entry::InfoObject)
