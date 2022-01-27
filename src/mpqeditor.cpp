@@ -177,23 +177,19 @@ void MpqEditor::createNewArchive()
 		if (archiveWasOpened)
 			oldArchive = archive;
 
-		HANDLE file = INVALID_HANDLE_VALUE;
-        file = CreateFile(filePath.toUtf8().data(), GENERIC_WRITE, 0, NULL, CREATE_ALWAYS, 0, NULL);
-		
-		if (file == INVALID_HANDLE_VALUE)
+        QFile file(filePath);
+
+        if (!file.open(QFile::WriteOnly)) {
+            showErrorMessage(tr("MPQ-Archiv-Datei konnte nicht angelegt werden."));
+            return;
+        }
+
+        if (!SFileCreateArchive(filePath.toUtf8().data(), MPQ_CREATE_ARCHIVE_V2, hashTableSize, &archive))
 		{
 			if (GetLastError() != ERROR_SUCCESS)
 			{
-				showErrorMessage(tr("MPQ-Archiv-Datei konnte nicht angelegt werden."));
-				return;
-			}
-		}
-		
-        if (!SFileCreateArchiveEx(filePath.toUtf8().data(), MPQ_CREATE_ARCHIVE_V2 | OPEN_ALWAYS, hashTableSize, &archive))
-		{
-			if (GetLastError() != ERROR_SUCCESS)
-			{
-                DeleteFile(filePath.toUtf8().data());
+                QFile file(filePath);
+                file.remove();
 			
 				if (archive != NULL && archive != oldArchive)
 					SFileCloseArchive(archive);
@@ -248,7 +244,7 @@ void MpqEditor::openArchive()
 		if (archiveWasOpened)
 			oldArchive = archive;
 
-        if (!SFileCreateArchiveEx(filePath.toUtf8().data(), OPEN_EXISTING, 0, &archive))
+        if (!SFileOpenArchive(filePath.toUtf8().data(), 0, 0, &archive))
 		{
 			if (GetLastError() != ERROR_SUCCESS)
 			{
@@ -360,7 +356,7 @@ void MpqEditor::extractSelectedFiles()
 		{
 			fileDirectory = extractSelectedFilesFileDialog->directory();
 			
-            if (!SFileExtractFile(archive, item->text(0).toUtf8().data(), item->text(0).toUtf8().data()))
+            if (!SFileExtractFile(archive, item->text(0).toUtf8().data(), item->text(0).toUtf8().data(), 0))
 				showErrorMessage(QString(tr("Datei \"%1\" konnte nicht extrahiert werden.")).arg(item->text(0)));
 		}
 		else
@@ -378,10 +374,10 @@ void MpqEditor::deleteSelectedFiles()
 {
 	QTreeWidgetItem *item;
 
-	foreach (item, archiveTreeWidget->selectedItems())
-	{
-        if (!SFileRemoveFile(archive, item->text(0).toUtf8().data()))
+    foreach (item, archiveTreeWidget->selectedItems()) {
+        if (!SFileRemoveFile(archive, item->text(0).toUtf8().data(), 0)) {
 			showErrorMessage(QString(tr("Datei \"%1\" konnte nicht gelöscht werden.")).arg(item->text(0)));
+        }
 	}
 
 	refreshTreeWidget(false);
@@ -397,7 +393,7 @@ void MpqEditor::showSettingsDialog()
 
 void MpqEditor::showErrorMessage(const QString &message)
 {
-	QMessageBox::warning(this, tr("Fehler"), tr("%1<br>Fehlermeldung: \"%2\"").arg(message).arg(ErrString(GetLastError())));
+    QMessageBox::warning(this, tr("Fehler"), tr("%1<br>Fehlermeldung: \"%2\"").arg(message).arg(GetLastError()));
 }
 
 void MpqEditor::refreshTreeWidget(bool showEmptyMessage)
@@ -411,7 +407,7 @@ void MpqEditor::refreshTreeWidget(bool showEmptyMessage)
 	}
 
 	TMPQArchive *mpqArchive = (TMPQArchive*)archive;
-	QString headLine = mpqArchive->szFileName;
+    QString headLine = tr("Unknown MPQ Archive");//mpqArchive->szFileName;
 	int lastIndex = headLine.lastIndexOf('/') + 1; //no special char :-(
 	
 	if (lastIndex != -1)

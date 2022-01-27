@@ -3,11 +3,11 @@
 ######################################################################
 
 TEMPLATE = app
-DEPENDPATH += . \
+DEPENDPATH += lib \
+        src/stormlib \
+         . \
         src \
         ui \
-        lib \
-        src/stormlib \
         src/vjassdoc \
         locale/de/LC_MESSAGES \
         locale/en/LC_MESSAGES
@@ -19,15 +19,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 
 CONFIG += c++11
 CONFIG += no_testcase_installs
-
-LIBS += -lstorm
-
-LIBS += -L$$PWD/lib/
-
-unix:LIBS += -L$$PWD/lib/ -lstorm
-#unix:LIBS += $${PWD}/lib/libstorm.a
-
-#win32:LIBS += c:/mylibs/math.lib
 
 # Input
 HEADERS += src/apidatabasedialog.h \
@@ -102,3 +93,16 @@ SOURCES += src/apidatabasedialog.cpp \
 RESOURCES = vjasside.qrc
 TRANSLATIONS += locale/de/LC_MESSAGES/vjasside.ts \
         locale/en/LC_MESSAGES/vjasside.ts
+
+stormlib.files  = $$PWD/lib/libstorm.so
+stormlib.path   = $$OUT_PWD
+
+INSTALLS += stormlib
+
+unix:!macx: LIBS += -L$$PWD/lib/ -lstorm
+
+INCLUDEPATH += $$PWD/.
+DEPENDPATH += $$PWD/.
+
+DISTFILES += \
+    run.sh

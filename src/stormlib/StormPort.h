@@ -9,7 +9,7 @@
 /* Computer: whiplash.flachland-chemnitz.de                                  */
 /* System: Linux 2.4.0 on i686                                               */
 /*                                                                           */
-/* Author: Sam Wilkins                                                       */
+/* Author: Sam Wilkins <swilkins1337@gmail.com>                              */
 /* System: Mac OS X and port to big endian processor                         */
 /*                                                                           */
 /*---------------------------------------------------------------------------*/
@@ -20,14 +20,23 @@
 /* 12.11.03  1.02  Dan  Macintosh compatibility                              */
 /* 24.07.04  1.03  Sam  Mac OS X compatibility                               */
 /* 22.11.06  1.04  Sam  Mac OS X compatibility (for StormLib 6.0)            */
-/* 31.12.06  1.05  XPinguin  Full GNU/Linux compatibility		     */
+/* 31.12.06  1.05  XPinguin  Full GNU/Linux compatibility		             */
+/* 17.10.12  1.05  Lad  Moved error codes so they don't overlap with errno.h */
 /*****************************************************************************/
 
 #ifndef __STORMPORT_H__
 #define __STORMPORT_H__
 
+#ifndef __cplusplus
+  #define bool char
+  #define true 1
+  #define false 0
+#endif
+
+//-----------------------------------------------------------------------------
 // Defines for Windows
-#if !defined(PLATFORM_DEFINED) && (defined(WIN32) || defined(WIN64))
+
+#if !defined(STORMLIB_PLATFORM_DEFINED) && defined(_WIN32)
 
   // In MSVC 8.0, there are some functions declared as deprecated.
   #if _MSC_VER >= 1400
@@ -35,58 +44,108 @@
   #define _CRT_NON_CONFORMING_SWPRINTFS
   #endif
 
-  #include <assert.h>      
-  #include <stdio.h>      
-  #include <windows.h>      
-  #define PLATFORM_LITTLE_ENDIAN  1
+  #include <tchar.h>
+  #include <assert.h>
+  #include <ctype.h>
+  #include <stdio.h>
 
-  #ifdef WIN64
-    #define PLATFORM_64BIT
+  // Suppress definitions of `min` and `max` macros by <windows.h>:
+  #define NOMINMAX 1
+  #include <windows.h>
+
+  #include <wininet.h>
+  #define STORMLIB_LITTLE_ENDIAN
+
+  #ifdef _WIN64
+    #define STORMLIB_64BIT
   #else
-    #define PLATFORM_32BIT
+    #define STORMLIB_32BIT
   #endif
 
-  #define PLATFORM_DEFINED                  // The platform is known now
+  #define STORMLIB_CDECL __cdecl
+
+  #define STORMLIB_WINDOWS
+  #define STORMLIB_PLATFORM_DEFINED                 // The platform is known now
 
 #endif
 
-// Defines for Mac Carbon 
-#if !defined(PLATFORM_DEFINED) && defined(__APPLE__)  // Mac Carbon API
+//-----------------------------------------------------------------------------
+// Defines for Mac
 
-  // Macintosh using Carbon
-  #include <Carbon/Carbon.h> // Mac OS X
-  
-  typedef unsigned char * LPBYTE;
-  typedef const char    * LPCSTR;
-  typedef unsigned long * LPDWORD;
-  typedef long          * PLONG;
-  typedef void          * LPVOID;
-  typedef unsigned int  UINT;
-  
+#if !defined(STORMLIB_PLATFORM_DEFINED) && defined(__APPLE__)  // Mac BSD API
+
+  // Macintosh
+  #include <sys/types.h>
+  #include <sys/stat.h>
+  #include <sys/mman.h>
+  #include <unistd.h>
+  #include <fcntl.h>
+  #include <stdlib.h>
+  #include <stdio.h>
+  #include <string.h>
+  #include <ctype.h>
+  #include <assert.h>
+  #include <errno.h>
+
+  // Support for PowerPC on Max OS X
+  #if (__ppc__ == 1) || (__POWERPC__ == 1) || (_ARCH_PPC == 1)
+    #include <stdint.h>
+    #include <CoreFoundation/CFByteOrder.h>
+  #endif
+
   #define    PKEXPORT
-  #define    __SYS_ZLIB
-  #define    __SYS_BZLIB
-  #define    LANG_NEUTRAL   0
 
-  #if defined(__BIG_ENDIAN__)
-    #define PLATFORM_LITTLE_ENDIAN  0
-  #else
-    #define PLATFORM_LITTLE_ENDIAN  1       // Apple is now making Macs with Intel CPUs
+  #ifndef __SYS_ZLIB 
+    #define    __SYS_ZLIB
   #endif
-  
-  #ifdef __LP64__
-    #define PLATFORM_64BIT
-  #else
-    #define PLATFORM_32BIT
+
+  #ifndef __SYS_BZLIB
+    #define    __SYS_BZLIB
   #endif
-  
-  #define PLATFORM_DEFINED                  // The platform is known now
+
+  #ifndef __BIG_ENDIAN__
+    #define STORMLIB_LITTLE_ENDIAN
+  #endif
+
+  #define STORMLIB_MAC
+  #define STORMLIB_HAS_MMAP                         // Indicate that we have mmap support
+  #define STORMLIB_PLATFORM_DEFINED                 // The platform is known now
 
 #endif
 
-// Assumption: we are not on Windows nor Macintosh, so this must be linux *grin*
-// Ladik : Why the hell Linux does not use some OS-dependent #define ?
-#if !defined(PLATFORM_DEFINED)
+//-----------------------------------------------------------------------------
+// Defines for HAIKU platform
+
+#if !defined(STORMLIB_PLATFORM_DEFINED) && defined(__HAIKU__)
+
+  #include <sys/types.h>
+  #include <sys/stat.h>
+  #include <sys/mman.h>
+  #include <fcntl.h>
+  #include <unistd.h>
+  #include <stdint.h>
+  #include <stdlib.h>
+  #include <stdio.h>
+  #include <stdarg.h>
+  #include <string.h>
+  #include <ctype.h>
+  #include <assert.h>
+  #include <errno.h>
+
+  #ifndef __BIG_ENDIAN__
+    #define STORMLIB_LITTLE_ENDIAN
+  #endif
+
+  #define STORMLIB_MAC                              // Use Mac compatible code
+  #define STORMLIB_HAIKU
+  #define STORMLIB_PLATFORM_DEFINED                 // The platform is known now
+
+#endif
+
+//-----------------------------------------------------------------------------
+// Defines for AMIGA platform
+
+#if !defined(STORMLIB_PLATFORM_DEFINED) && defined(__AMIGA__)
 
   #include <sys/types.h>
   #include <sys/stat.h>
@@ -99,187 +158,288 @@
   #include <string.h>
   #include <ctype.h>
   #include <assert.h>
+  #include <errno.h>
 
-  #define PLATFORM_LITTLE_ENDIAN  1
-  #define PLATFORM_DEFINED
-  #define LANG_NEUTRAL   0
+  #ifndef __BIG_ENDIAN__
+    #define STORMLIB_LITTLE_ENDIAN
+  #endif
 
-#endif  /* not __powerc */
+  #define STORMLIB_MAC                              // Use Mac compatible code
+  #define STORMLIB_AMIGA
+  #define STORMLIB_PLATFORM_DEFINED
 
+#endif
 
-#if !defined(WIN32) && !defined(WIN64)
+//-----------------------------------------------------------------------------
+// Defines for Switch platform
+
+#if !defined(STORMLIB_PLATFORM_DEFINED) && defined(__SWITCH__)
+
+  #include <sys/types.h>
+  #include <sys/stat.h>
+  #include <fcntl.h>
+  #include <unistd.h>
+  #include <stdint.h>
+  #include <stdlib.h>
+  #include <stdio.h>
+  #include <stdarg.h>
+  #include <string.h>
+  #include <strings.h>
+  #include <ctype.h>
+  #include <assert.h>
+  #include <errno.h>
+
+  #ifndef __BIG_ENDIAN__
+    #define STORMLIB_LITTLE_ENDIAN
+  #endif
+
+  #define STORMLIB_MAC                              // Use Mac compatible code
+  #define STORMLIB_SWITCH
+  #define STORMLIB_PLATFORM_DEFINED
+
+#endif
+
+//-----------------------------------------------------------------------------
+// Defines for 3DS platform
+
+#if !defined(STORMLIB_PLATFORM_DEFINED) && defined(__3DS__)
+
+  #include <sys/stat.h>
+  #include <fcntl.h>
+  #include <unistd.h>
+  #include <stdint.h>
+  #include <stdlib.h>
+  #include <stdio.h>
+  #include <stdarg.h>
+  #include <string.h>
+  #include <strings.h>
+  #include <ctype.h>
+  #include <assert.h>
+  #include <errno.h>
+
+  #define STORMLIB_LITTLE_ENDIAN
+
+  #define STORMLIB_MAC                              // Use Mac compatible code
+  #define STORMLIB_CTR
+  #define STORMLIB_PLATFORM_DEFINED
+
+#endif
+
+//-----------------------------------------------------------------------------
+// Defines for Vita platform
+
+#if !defined(STORMLIB_PLATFORM_DEFINED) && defined(__vita__)
+
+  #include <sys/types.h>
+  #include <sys/stat.h>
+  #include <fcntl.h>
+  #include <unistd.h>
+  #include <stdint.h>
+  #include <stdlib.h>
+  #include <stdio.h>
+  #include <stdarg.h>
+  #include <string.h>
+  #include <strings.h>
+  #include <ctype.h>
+  #include <assert.h>
+  #include <errno.h>
+
+  #ifndef __BIG_ENDIAN__
+    #define STORMLIB_LITTLE_ENDIAN
+  #endif
+
+  #define STORMLIB_MAC                              // Use Mac compatible code
+  #define STORMLIB_VITA
+  #define STORMLIB_PLATFORM_DEFINED
+
+#endif
+
+//-----------------------------------------------------------------------------
+// Assumption: If the platform is not defined, assume a Linux-like platform
+
+#if !defined(STORMLIB_PLATFORM_DEFINED)
+
+  #include <sys/types.h>
+  #include <sys/stat.h>
+  #include <fcntl.h>
+  #include <unistd.h>
+  #include <stdint.h>
+  #include <stdlib.h>
+  #include <stdio.h>
+  #include <stdarg.h>
+  #include <string.h>
+  #include <strings.h>
+  #include <ctype.h>
+  #include <assert.h>
+  #include <errno.h>
+
+  #ifndef __BIG_ENDIAN__
+    #define STORMLIB_LITTLE_ENDIAN
+  #endif
+
+  // Platforms with mmap support
+  #if defined(__linux__) || defined(__FreeBSD__) || defined(__NetBSD__) || defined(__OpenBSD__) || defined(__DragonFly__)
+    #include <sys/mman.h>
+    #define STORMLIB_HAS_MMAP
+  #endif
+
+  #define STORMLIB_LINUX
+  #define STORMLIB_PLATFORM_DEFINED
+
+#endif
+
+//-----------------------------------------------------------------------------
+// Definition of Windows-specific types for non-Windows platforms
+
+#ifndef STORMLIB_WINDOWS
+  #if __LP64__
+    #define STORMLIB_64BIT
+  #else
+    #define STORMLIB_32BIT
+  #endif
+
+  // __cdecl meand nothing on non-Windows
+  #define STORMLIB_CDECL /* */
 
   // Typedefs for ANSI C
   typedef unsigned char  BYTE;
-  typedef int16_t        SHORT;
-  typedef uint16_t       WORD;
-  typedef uint16_t       USHORT;
-  typedef int32_t        LONG;
-  typedef uint32_t       DWORD;
-  typedef intptr_t       DWORD_PTR;
-  typedef intptr_t       LONG_PTR;
-  typedef intptr_t       INT_PTR;
-  typedef int64_t        LONGLONG;
-#ifndef __OBJC__
-#ifdef __cplusplus
-  #define BOOL           bool
-#else
-  #define BOOL           int
-#endif
-#endif
+  typedef unsigned short USHORT;
+  typedef int            LONG;
+  typedef unsigned int   DWORD;
+  typedef unsigned long  DWORD_PTR;
+  typedef long           LONG_PTR;
+  typedef long           INT_PTR;
+  typedef long long      LONGLONG;
+  typedef unsigned long long ULONGLONG;
   typedef void         * HANDLE;
   typedef void         * LPOVERLAPPED; // Unsupported on Linux and Mac
   typedef char           TCHAR;
-  typedef uint32_t       LCID;
-  typedef unsigned int   UINT;
+  typedef unsigned int   LCID;
   typedef LONG         * PLONG;
   typedef DWORD        * LPDWORD;
   typedef BYTE         * LPBYTE;
-  
-  typedef struct _FILETIME
-  { 
-      DWORD dwLowDateTime; 
-      DWORD dwHighDateTime; 
-  }
-  FILETIME, *PFILETIME;
+  typedef const char   * LPCTSTR;
+  typedef const char   * LPCSTR;
+  typedef char         * LPTSTR;
+  typedef char         * LPSTR;
 
-  typedef union _LARGE_INTEGER
-  {
-  #if PLATFORM_LITTLE_ENDIAN
-    struct
-    {
-        DWORD LowPart;
-        LONG HighPart;
-    };
-  #else
-    struct
-    {
-        LONG HighPart;
-        DWORD LowPart;
-    };
+  #ifdef STORMLIB_32BIT
+    #define _LZMA_UINT32_IS_ULONG
   #endif
-    LONGLONG QuadPart;
-  }
-  LARGE_INTEGER, *PLARGE_INTEGER;
-  
+
   // Some Windows-specific defines
   #ifndef MAX_PATH
     #define MAX_PATH 1024
   #endif
 
-  #ifndef TRUE
-    #define TRUE true
-  #endif
-
-  #ifndef FALSE
-    #define FALSE false
-  #endif
-
-  #define VOID     void
-  #define WINAPI 
+  #define WINAPI
 
   #define FILE_BEGIN    SEEK_SET
   #define FILE_CURRENT  SEEK_CUR
   #define FILE_END      SEEK_END
-  
-  #define CREATE_NEW    1
-  #define CREATE_ALWAYS 2
-  #define OPEN_EXISTING 3
-  #define OPEN_ALWAYS   4
-  
-  #define FILE_SHARE_READ 0x00000001L
-  #define GENERIC_WRITE   0x40000000
-  #define GENERIC_READ    0x80000000
-  
-  #define ERROR_SUCCESS                     0
-  #define ERROR_INVALID_FUNCTION            1
-  #define ERROR_FILE_NOT_FOUND              2
-  #define ERROR_ACCESS_DENIED               5
-  #define ERROR_NOT_ENOUGH_MEMORY           8
-  #define ERROR_BAD_FORMAT                 11
-  #define ERROR_NO_MORE_FILES              18
-  #define ERROR_WRITE_FAULT                29
-  #define ERROR_GEN_FAILURE                31
-  #define ERROR_HANDLE_EOF                 38
-  #define ERROR_HANDLE_DISK_FULL           39
-  #define ERROR_NOT_SUPPORTED              50
-  #define ERROR_INVALID_PARAMETER          87
-  #define ERROR_DISK_FULL                 112
-  #define ERROR_CALL_NOT_IMPLEMENTED      120
-  #define ERROR_ALREADY_EXISTS            183
-  #define ERROR_CAN_NOT_COMPLETE         1003
-  #define ERROR_PARAMETER_QUOTA_EXCEEDED 1283
-  #define ERROR_FILE_CORRUPT             1392
-  #define ERROR_INSUFFICIENT_BUFFER      4999
-  
-  #define INVALID_HANDLE_VALUE ((HANDLE) -1)
-  
-  #ifndef min
-  #define min(a, b) ((a < b) ? a : b)
-  #endif
-  
-  #ifndef max
-  #define max(a, b) ((a > b) ? a : b)
-  #endif
-  
-  #define _stricmp strcasecmp
+
+  #define _T(x)     x
+  #define _tcslen   strlen
+  #define _tcscpy   strcpy
+  #define _tcscat   strcat
+  #define _tcschr   strchr
+  #define _tcsrchr  strrchr
+  #define _tcsstr   strstr
+  #define _tcsnicmp strncasecmp
+  #define _tprintf  printf
+  #define _stprintf sprintf
+  #define _tremove  remove
+  #define _tmain    main
+
+  #define _stricmp  strcasecmp
   #define _strnicmp strncasecmp
-  
-  extern int globalerr;
-  
-  void  SetLastError(int err);
-  int   GetLastError();
-  char *ErrString(int err);
+  #define _tcsicmp  strcasecmp
+  #define _tcsnicmp strncasecmp
 
-  // Emulation of functions for file I/O available in Win32
-  HANDLE CreateFile(const char * lpFileName, DWORD dwDesiredAccess, DWORD dwShareMode, void * lpSecurityAttributes, DWORD dwCreationDisposition, DWORD dwFlagsAndAttributes, HANDLE hTemplateFile);
-  BOOL   CloseHandle(HANDLE hObject);
+#endif // !STORMLIB_WINDOWS
 
-  DWORD  GetFileSize(HANDLE hFile, DWORD * lpFileSizeHigh);
-  DWORD  SetFilePointer(HANDLE, LONG lDistanceToMove, LONG * lpDistanceToMoveHigh, DWORD dwMoveMethod);
-  BOOL   SetEndOfFile(HANDLE hFile);
+// 64-bit calls are supplied by "normal" calls on Mac
+#if defined(STORMLIB_MAC)
+  #define stat64  stat
+  #define fstat64 fstat
+  #define lseek64 lseek
+  #define ftruncate64 ftruncate
+  #define off64_t off_t
+  #define O_LARGEFILE 0
+#endif
 
-  BOOL   ReadFile(HANDLE hFile, void * lpBuffer, DWORD nNumberOfBytesToRead, DWORD * lpNumberOfBytesRead, void * lpOverLapped);
-  BOOL   WriteFile(HANDLE hFile, const void * lpBuffer, DWORD nNumberOfBytesToWrite, DWORD * lpNumberOfBytesWritten, void * lpOverLapped);
+// Platform-specific error codes for non-Windows platforms
+#ifndef ERROR_SUCCESS
+  #define ERROR_SUCCESS                  0
+  #define ERROR_FILE_NOT_FOUND           ENOENT
+  #define ERROR_ACCESS_DENIED            EPERM
+  #define ERROR_INVALID_HANDLE           EBADF
+  #define ERROR_NOT_ENOUGH_MEMORY        ENOMEM
+  #define ERROR_NOT_SUPPORTED            ENOTSUP
+  #define ERROR_INVALID_PARAMETER        EINVAL
+  #define ERROR_NEGATIVE_SEEK            ESPIPE
+  #define ERROR_DISK_FULL                ENOSPC
+  #define ERROR_ALREADY_EXISTS           EEXIST
+  #define ERROR_INSUFFICIENT_BUFFER      ENOBUFS
+  #define ERROR_BAD_FORMAT               1000        // No such error code under Linux
+  #define ERROR_NO_MORE_FILES            1001        // No such error code under Linux
+  #define ERROR_HANDLE_EOF               1002        // No such error code under Linux
+  #define ERROR_CAN_NOT_COMPLETE         1003        // No such error code under Linux
+  #define ERROR_FILE_CORRUPT             1004        // No such error code under Linux
+#endif
 
-  BOOL   IsBadReadPtr(const void * ptr, int size);
-  DWORD  GetFileAttributes(const char * szileName);
+// Macros that can sometimes be missing
+#ifndef _countof
+  #define _countof(x)  (sizeof(x) / sizeof(x[0]))
+#endif
 
-  BOOL   DeleteFile(const char * lpFileName);
-  BOOL   MoveFile(const char * lpFromFileName, const char * lpToFileName);
-  void   GetTempPath(DWORD szTempLength, char * szTemp);
-  void   GetTempFileName(const char * lpTempFolderPath, const char * lpFileName, DWORD something, char * szLFName);
+//-----------------------------------------------------------------------------
+// Swapping functions
 
-  #define strnicmp strncasecmp
-
-#endif // !WIN32
-
-#if PLATFORM_LITTLE_ENDIAN
+#ifdef STORMLIB_LITTLE_ENDIAN
     #define    BSWAP_INT16_UNSIGNED(a)          (a)
     #define    BSWAP_INT16_SIGNED(a)            (a)
     #define    BSWAP_INT32_UNSIGNED(a)          (a)
     #define    BSWAP_INT32_SIGNED(a)            (a)
+    #define    BSWAP_INT64_SIGNED(a)            (a)
+    #define    BSWAP_INT64_UNSIGNED(a)          (a)
     #define    BSWAP_ARRAY16_UNSIGNED(a,b)      {}
     #define    BSWAP_ARRAY32_UNSIGNED(a,b)      {}
-    #define    BSWAP_TMPQSHUNT(a)               {}
-    #define    BSWAP_TMPQHEADER(a)              {}
+    #define    BSWAP_ARRAY64_UNSIGNED(a,b)      {}
+    #define    BSWAP_PART_HEADER(a)             {}
+    #define    BSWAP_TMPQHEADER(a,b)            {}
+    #define    BSWAP_TMPKHEADER(a)              {}
 #else
-    extern unsigned short SwapUShort(unsigned short);
-    extern unsigned long SwapULong(unsigned long);
-    extern short SwapShort(unsigned short);
-    extern long SwapLong(unsigned long);
-    extern void ConvertUnsignedLongBuffer(unsigned long *buffer, unsigned long nbLongs);
-    extern void ConvertUnsignedShortBuffer(unsigned short *buffer, unsigned long nbShorts);
-    extern void ConvertTMPQShunt(void *shunt);
-    extern void ConvertTMPQHeader(void *header);
-    #define    BSWAP_INT16_UNSIGNED(a)          SwapUShort((a))
-    #define    BSWAP_INT32_UNSIGNED(a)          SwapULong((a))
-    #define    BSWAP_INT16_SIGNED(a)            SwapShort((a))
-    #define    BSWAP_INT32_SIGNED(a)            SwapLong((a))
-    #define    BSWAP_ARRAY16_UNSIGNED(a,b)      ConvertUnsignedShortBuffer((a),(b))
-    #define    BSWAP_ARRAY32_UNSIGNED(a,b)      ConvertUnsignedLongBuffer((a),(b))
-    #define    BSWAP_TMPQSHUNT(a)               ConvertTMPQShunt((a))
-    #define    BSWAP_TMPQHEADER(a)              ConvertTMPQHeader((a))
+
+#ifdef __cplusplus
+  extern "C" {
+#endif
+    int16_t  SwapInt16(uint16_t);
+    uint16_t SwapUInt16(uint16_t);
+    int32_t  SwapInt32(uint32_t);
+    uint32_t SwapUInt32(uint32_t);
+    int64_t  SwapInt64(uint64_t);
+    uint64_t SwapUInt64(uint64_t);
+    void ConvertUInt16Buffer(void * ptr, size_t length);
+    void ConvertUInt32Buffer(void * ptr, size_t length);
+    void ConvertUInt64Buffer(void * ptr, size_t length);
+    void ConvertTMPQUserData(void *userData);
+    void ConvertTMPQHeader(void *header, uint16_t wPart);
+    void ConvertTMPKHeader(void *header);
+#ifdef __cplusplus
+  }
+#endif
+    #define    BSWAP_INT16_SIGNED(a)            SwapInt16((a))
+    #define    BSWAP_INT16_UNSIGNED(a)          SwapUInt16((a))
+    #define    BSWAP_INT32_SIGNED(a)            SwapInt32((a))
+    #define    BSWAP_INT32_UNSIGNED(a)          SwapUInt32((a))
+    #define    BSWAP_INT64_SIGNED(a)            SwapInt64((a))
+    #define    BSWAP_INT64_UNSIGNED(a)          SwapUInt64((a))
+    #define    BSWAP_ARRAY16_UNSIGNED(a,b)      ConvertUInt16Buffer((a),(b))
+    #define    BSWAP_ARRAY32_UNSIGNED(a,b)      ConvertUInt32Buffer((a),(b))
+    #define    BSWAP_ARRAY64_UNSIGNED(a,b)      ConvertUInt64Buffer((a),(b))
+    #define    BSWAP_TMPQHEADER(a,b)            ConvertTMPQHeader((a),(b))
+    #define    BSWAP_TMPKHEADER(a)              ConvertTMPKHeader((a))
 #endif
 
 #endif // __STORMPORT_H__
