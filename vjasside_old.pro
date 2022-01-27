@@ -4,12 +4,13 @@
 
 TEMPLATE = app
 DEPENDPATH += . \
-              src \
-              ui \
-              src/stormlib \
-              src/vjassdoc \
-              locale/de/LC_MESSAGES \
-              locale/en/LC_MESSAGES
+        src \
+        ui \
+        lib \
+        src/stormlib \
+        src/vjassdoc \
+        locale/de/LC_MESSAGES \
+        locale/en/LC_MESSAGES
 INCLUDEPATH += . src src/stormlib
 
 QT       += core gui testlib
@@ -19,7 +20,11 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets printsupport
 CONFIG += c++11
 CONFIG += no_testcase_installs
 
-unix:LIBS += -L$${PWD}/lib/ -lstorm
+LIBS += -lstorm
+
+LIBS += -L$$PWD/lib/
+
+unix:LIBS += -L$$PWD/lib/ -lstorm
 #unix:LIBS += $${PWD}/lib/libstorm.a
 
 #win32:LIBS += c:/mylibs/math.lib
